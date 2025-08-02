@@ -153,7 +153,7 @@ Learn More about Tailwind here: [Check TailwindCSS site](https://tailwindcss.com
 
 4. **Push to your branch**
    ```bash
-   git push https://github.com/Web-dev-ENT-302/Frontend
+   git push https://github.com/Web-dev-ENT-302/Frontend staging
    ```
 
 5. **Create a Pull Request**
