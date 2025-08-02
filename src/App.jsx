@@ -1,6 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
+
+/* components */
 import ToastNotification from './components/toast-notification/ToastNotifcation'
+
+/* pages */
+import Register from './pages/auths/register/Register'
+
+/* styles */
+import './App.css'
 
 function App() {
   return (
@@ -10,7 +17,9 @@ function App() {
 
         <Routes>
           {/* Routes */}
-          <Route path='/' element={""} />
+          <Route path='/' element={<Register />} />
+          <Route path='/login' element={<Register />} />
+          <Route path='/register' element={<Register />} />
 
           {/* Handle Invalid Routes */}
           <Route path='*' element={""} />
