@@ -137,7 +137,7 @@ Learn More about Tailwind here: [Check TailwindCSS site](https://tailwindcss.com
 
 1. **Create a new branch for your feature**
    ```bash
-   git checkout -b feature/your-feature-name
+   git checkout -b staging
    ```
 
 2. **Make your changes**
@@ -153,11 +153,12 @@ Learn More about Tailwind here: [Check TailwindCSS site](https://tailwindcss.com
 
 4. **Push to your branch**
    ```bash
-   git push https://github.com/Web-dev-ENT-302/Frontend staging
+   git push https://github.com/Web-dev-ENT-302/Frontend
    ```
 
 5. **Create a Pull Request**
    - Go to the repository on GitHub
+   - Switch to staging branch
    - Click "New Pull Request"
    - Select your branch and add a description
    - Request review from team members
