@@ -1,6 +1,5 @@
 /* components */
 import Button from "../../../components/button/Button";
-import Navbar from "../../../components/navbar/Navbar"
 
 /* icons */
 import { FaUserGraduate } from "react-icons/fa6";
@@ -14,7 +13,6 @@ import { Link } from "react-router-dom";
 
 
 const Register = () => {
-
   const [tab, setTab] = useState("student")
   function handleTabChange(currentTab) {
     if (currentTab === "driver") {
@@ -25,9 +23,6 @@ const Register = () => {
   }
   return (
     <>
-      {/* navbar component */}
-      <Navbar />
-
       {/* student sign up component */}
       <div className="relative flex justify-center w-full h-full login-wrapper">
         <div className="w-[90%] md:w-[60%] lg:w-[38%]  lg:max-w-[38%] bg-white shadow-[0px_0px_10px_rgba(0,0,0,0.15)] rounded-[10px] my-[7rem] relative">

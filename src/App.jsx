@@ -9,6 +9,9 @@ import Register from './pages/auths/register/Register'
 /* styles */
 import './App.css'
 import Login from './pages/auths/login/Login'
+import StudentDashboard from './pages/dashboard/students/StudentDashboard'
+import MainLayout from './components/MainLayout'
+import DashboardLayout from './pages/dashboard/components/DashboardLayout'
 
 function App() {
   return (
@@ -17,13 +20,16 @@ function App() {
         <ToastNotification /> {/* Reuseable component that displays a toast notification when called i.e: Notification('success', 'Something was successful'); */}
 
         <Routes>
-          {/* Routes */}
-          <Route path='/' element={<Register />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
+          {/* Public Routes using MainLayout */}
+          <Route path='/' element={<MainLayout><Register /></MainLayout>} />
+          <Route path='/login' element={<MainLayout><Login /></MainLayout>} />
+          <Route path='/register' element={<MainLayout><Register /></MainLayout>} />
+
+          {/* Protected Dashboard Routes using DashboardLayout */}
+          <Route path='/student-dashboard' element={<DashboardLayout><StudentDashboard /></DashboardLayout>} />
 
           {/* Handle Invalid Routes */}
-          <Route path='*' element={""} />
+          <Route path='*' element={<MainLayout><Register /></MainLayout>} />
         </Routes>
       </BrowserRouter>
 
