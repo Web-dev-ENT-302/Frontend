@@ -1,12 +1,10 @@
 /* components */
 import Button from '../../../components/button/Button'
-import Navbar from '../../../components/navbar/Navbar'
 
 /* icons */
 import { FaUserGraduate } from "react-icons/fa6";
 import { FaIdCard } from "react-icons/fa";
 import { useState } from "react";
-import { FaUser } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import { FaLock } from "react-icons/fa6";
 import { Link } from "react-router-dom";
@@ -24,9 +22,6 @@ const Login = () => {
     }
     return (
         <>
-            {/* navbar component */}
-            <Navbar />
-
             {/* student sign in component */}
             <div className="relative flex justify-center w-full h-full login-wrapper">
                 <div className="w-[90%] md:w-[60%] lg:w-[38%]  lg:max-w-[38%] bg-white shadow-[0px_0px_10px_rgba(0,0,0,0.15)] rounded-[10px] my-[7rem] relative">
@@ -79,7 +74,7 @@ const Login = () => {
                                                 <input type="password" className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your password" required />
                                             </div>
                                         </div>
-                                        
+
                                         {/* button component */}
                                         <div className="mt-10">
                                             <Button value="Log in" />

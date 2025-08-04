@@ -1,0 +1,23 @@
+/* START: this styles controls the display of the sidebar on mobile view */
+.mobile-nav-links-overlay {
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.mobile-nav-links-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-nav-links {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+  transition: var(--transition);
+}
+.mobile-nav-links.open {
+  transform: translateX(0);
+}
+/* END: this styles controls the display of the sidebar on mobile view */
