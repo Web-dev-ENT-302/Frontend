@@ -158,10 +158,11 @@ Learn More about Tailwind here: [Check TailwindCSS site](https://tailwindcss.com
 
 5. **Create a Pull Request**
    - Go to the repository on GitHub
-   - Switch to staging branch
-   - Click "New Pull Request"
-   - Select your branch and add a description
-   - Request review from team members
+   - Switch to "Staging" branch
+   - Click "Contribute"
+   - Click "Open pull request"
+   - Add a description
+   - Click "Create pull request"
 
 ### Coding Standards
 
