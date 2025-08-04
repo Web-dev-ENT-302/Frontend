@@ -8,6 +8,7 @@ import Register from './pages/auths/register/Register'
 
 /* styles */
 import './App.css'
+import Login from './pages/auths/login/Login'
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Routes>
           {/* Routes */}
           <Route path='/' element={<Register />} />
-          <Route path='/login' element={<Register />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
 
           {/* Handle Invalid Routes */}

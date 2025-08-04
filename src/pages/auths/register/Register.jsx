@@ -1,3 +1,5 @@
+/* components */
+import Button from "../../../components/button/Button";
 import Navbar from "../../../components/navbar/Navbar"
 
 /* icons */
@@ -9,8 +11,7 @@ import { IoMail } from "react-icons/io5";
 import { FaLock } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
-/* components */
-import Button from "../../../components/button/Button";
+
 
 const Register = () => {
 
@@ -28,22 +29,22 @@ const Register = () => {
       <Navbar />
 
       {/* student sign up component */}
-      <div className="login-wrapper relative w-full h-full flex justify-center">
+      <div className="relative flex justify-center w-full h-full login-wrapper">
         <div className="w-[90%] md:w-[60%] lg:w-[38%]  lg:max-w-[38%] bg-white shadow-[0px_0px_10px_rgba(0,0,0,0.15)] rounded-[10px] my-[7rem] relative">
           <div className="text-center p-[1.5rem] mt-2">
             <h4 className="mb-2 text-[--heading-text] font-medium">Sign Up</h4>
             <p className="figcaption text-[--body-text]">Fast & safe rides around campus</p>
           </div>
 
-          <div className="navigation-tabs mt-2 flex w-full ">
+          <div className="flex w-full mt-2 navigation-tabs ">
             <button className={`w-[50%]  py-3 cursor-pointer border-b-2  ${tab === 'student' ? 'bg-[--primary-3] border-b-[--primary] text-[--primary]' : ''}`} onClick={() => handleTabChange("student")}>
-              <p className="figcaption flex items-center justify-center gap-2 ">
+              <p className="flex items-center justify-center gap-2 figcaption ">
                 <FaUserGraduate className="text-[1rem]" />
                 Student
               </p>
             </button>
             <button className={`w-[50%] py-3 cursor-pointer border-b-2  ${tab === 'driver' ? 'bg-[--primary-3] border-b-[--primary] text-[--primary]' : ''}`} onClick={() => handleTabChange("driver")}>
-              <p className="figcaption flex items-center justify-center gap-2 ">
+              <p className="flex items-center justify-center gap-2 figcaption ">
                 <FaIdCard className="text-[1rem]" />
                 Driver</p>
             </button>
@@ -72,10 +73,10 @@ const Register = () => {
 
                     {/* email */}
                     <div className="mb-5">
-                      <label htmlFor="" className="figcaption">Email/Phone</label>
+                      <label htmlFor="" className="figcaption">Email</label>
                       <div className="relative mt-1">
                         <IoMail className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                        <input type="text" className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your email or Phone" required />
+                        <input type="email" className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your email or Phone" required />
                       </div>
                     </div>
 
@@ -105,7 +106,7 @@ const Register = () => {
                       <Button value="Create Account" />
                     </div>
 
-                    <div className="text-center mt-8">
+                    <div className="mt-8 text-center">
                       <p className="text-[.8rem] figcaption">Already have an account? <Link to="/login" className="text-[--primary] font-medium">Log in</Link></p>
                     </div>
                   </form>
@@ -167,7 +168,7 @@ const Register = () => {
                       <Button value="Create Account" />
                     </div>
 
-                    <div className="text-center mt-8">
+                    <div className="mt-8 text-center">
                       <p className="text-[.8rem] figcaption">Already have an account? <Link to="/login" className="text-[--primary] font-medium">Log in</Link></p>
                     </div>
                   </form>
