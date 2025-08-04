@@ -114,7 +114,7 @@ const Login = () => {
 
                                         {/* button component */}
                                         <div className="mt-10">
-                                            <Button value="Create Account" />
+                                            <Button value="Log in" />
                                         </div>
 
                                         <div className="mt-8 text-center">
