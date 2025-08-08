@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 /* components */
 import Button from '../../../components/button/Button'
 
@@ -7,7 +9,6 @@ import { FaIdCard } from "react-icons/fa";
 import { useState } from "react";
 import { IoMail } from "react-icons/io5";
 import { FaLock } from "react-icons/fa6";
-import { Link } from "react-router-dom";
 
 
 
@@ -61,7 +62,7 @@ const Login = () => {
                                             <label htmlFor="" className="figcaption">Email</label>
                                             <div className="relative mt-1">
                                                 <IoMail className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                                                <input type="email" className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your email or Phone" required />
+                                                <input type="email" className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your email or Phone"  />
                                             </div>
                                         </div>
 
@@ -71,13 +72,15 @@ const Login = () => {
                                             <label htmlFor="" className="figcaption">Password</label>
                                             <div className="relative mt-1">
                                                 <FaLock className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                                                <input type="password" className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your password" required />
+                                                <input type="password" className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your password"  />
                                             </div>
                                         </div>
 
                                         {/* button component */}
                                         <div className="mt-10">
-                                            <Button value="Log in" />
+                                            <Link to="/student-dashboard">
+                                                <Button value="Log in" />
+                                            </Link>
                                         </div>
 
                                         <div className="mt-8 text-center">
