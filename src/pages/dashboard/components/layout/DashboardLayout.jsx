@@ -1,4 +1,4 @@
-import DashboardNavbar from './dashboard-navbar/DashboardNavbar'
+import DashboardNavbar from '../dashboard-navbar/DashboardNavbar'
 
 const DashboardLayout = ({ children }) => {
     return (

@@ -9,9 +9,10 @@ import Register from './pages/auths/register/Register'
 /* styles */
 import './App.css'
 import Login from './pages/auths/login/Login'
-import StudentDashboard from './pages/dashboard/students/StudentDashboard'
 import MainLayout from './components/MainLayout'
-import DashboardLayout from './pages/dashboard/components/DashboardLayout'
+import StudentDashboard from './pages/dashboard/students/StudentDashboard'
+import DashboardLayout from './pages/dashboard/components/layout/DashboardLayout'
+import ConfirmRide from './pages/dashboard/students/ConfirmRide'
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
 
           {/* Protected Dashboard Routes using DashboardLayout */}
           <Route path='/student-dashboard' element={<DashboardLayout><StudentDashboard /></DashboardLayout>} />
+          <Route path='/confirm-ride' element={<ConfirmRide />} />
 
           {/* Handle Invalid Routes */}
           <Route path='*' element={<MainLayout><Register /></MainLayout>} />

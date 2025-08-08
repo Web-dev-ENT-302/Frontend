@@ -1,18 +1,24 @@
+import { useState } from "react";
+import {Link} from "react-router-dom"
+
+import mapImage from "../../../assets/images/map-image.svg"
+
+// components
+import QuickDestinationCard from "../components/ui/QuickDestinationCard";
+import RecentRides from "../components/ui/RecentRides";
+
+// icons
 import { FaLocationDot } from "react-icons/fa6";
 import { FaFlag } from "react-icons/fa6";
-import mapImage from "../../../assets/images/map-image.svg"
 import { FaBook } from "react-icons/fa6";
 import { FaHouse } from "react-icons/fa6";
 import { GiGate } from "react-icons/gi";
 import { MdSportsBasketball } from "react-icons/md";
-import QuickDestinationCard from "../components/QuickDestinationCard";
-import { MdHistory } from "react-icons/md";
 
 const StudentDashboard = () => {
     return (
         <>
             <section className="my-28">
-                {/*  */}
                 <div>
                     <h3 className="font-semibold">Hi, Ayomide</h3>
                     <p className="figcaption text-[#787878]">Where are you going today?</p>
@@ -23,7 +29,7 @@ const StudentDashboard = () => {
                     <div>
                         <div className="relative">
                             <FaLocationDot className="absolute top-[.9rem] left-[.9rem] text-[#FFA238]" />
-                            <input type="text" className="bg-[#F5F0E9] w-full rounded-full py-3 outline-none px-10 text-sm" placeholder="New Hostel" />
+                            <input type="text" className="bg-[#F5F0E9] w-full rounded-full py-3 outline-none px-10 text-sm" placeholder="New Hostel"/>
                         </div>
                         <div className="relative mt-3">
                             <FaFlag className="absolute top-[.9rem] left-[.9rem] text-[#486FFF]" />
@@ -32,14 +38,16 @@ const StudentDashboard = () => {
                     </div>
                 </div>
 
-                {/* Live map container */}
+                {/* Live map  */}
                 <div className="w-full mt-4 rounded-2xl ">
                     <img src={mapImage} alt="" className="object-cover w-full" />
                 </div>
 
                 {/* request a ride btn */}
                 <div className="relative mt-8">
-                    <button className="w-full bg-[--primary] py-[.9rem] rounded-[10px] text-white text-sm shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear">Request a Ride</button>
+                    <Link to="/confirm-ride">
+                    <button onClick className="w-full bg-[--primary] py-[.9rem] rounded-[10px] text-white text-sm shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear">Request a Ride</button>
+                    </Link>
                 </div>
 
                 {/* quick destination */}
@@ -53,26 +61,15 @@ const StudentDashboard = () => {
                     </div>
                 </div>
 
-
+                
                 {/* recent rides */}
-                {/* <div className="mt-10">
+                <div className="mt-10">
                     <h4 className="font-medium">Recent Rides </h4>
-                    <div className="grid grid-cols-1 mt-4">
-                        <div className="p-4 bg-white rounded-[10px] shadow-[0px_0px_10px_rgba(0,0,0,0.04)] flex gap-3 items-center cursor-pointer hover:shadow-[0px_0px_10px_rgba(0,0,0,0.1)]  transition-all ease-linear">
-                            <div>
-                                <div>
-                                    <span className={` text-[#3A3A3A] bg-[#ff0000] `}>
-                                        <MdHistory />
-                                    </span>
-                                    <p>3 in 1 LT</p>
-                                </div>
-                                <p>Yesterday</p>
-                            </div>
-
-                        </div>
-
+                    <div className="grid grid-cols-1 gap-4 mt-4">
+                        <RecentRides location="3 in 1 LT" price="700.00" distance="2.7km" estimatedTime="12 mins" />
+                        <RecentRides location="SOC" price="500.00" distance="1.7km" estimatedTime="4 mins" />
                     </div>
-                </div> */}
+                </div>
             </section>
         </>
     )
