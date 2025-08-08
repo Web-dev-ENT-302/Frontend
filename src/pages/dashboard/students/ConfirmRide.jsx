@@ -9,6 +9,7 @@ import { FaMoneyBill } from "react-icons/fa";
 import mapImage from "../../../assets/images/map-image2.svg"
 import { TbCurrencyNaira } from "react-icons/tb";
 import RideDetailsInfo from "../components/ui/RideDetailsInfo";
+import { Link } from "react-router-dom";
 
 const ConfirmRide = () => {
     return (
@@ -69,7 +70,7 @@ const ConfirmRide = () => {
                 </div>
 
                 {/* Live map */}
-                <div className="w-full mt-4 ">
+                <div className="w-full mt-4">
                     <img src={mapImage} alt="" className="object-cover w-full" />
                 </div>
 
@@ -127,7 +128,9 @@ const ConfirmRide = () => {
                         </div>
 
                         <div className="flex justify-center mt-6">
-                            <button className=" text-[#787878] font-medium text-[.8rem] sm:text-[.9rem] cursor-pointer">Cancel</button>
+                            <Link to="/student-dashboard">
+                                <button className=" text-[#787878] font-medium text-[.8rem] sm:text-[.9rem] cursor-pointer">Cancel</button>
+                            </Link>
                         </div>
                     </div>
                 </section>

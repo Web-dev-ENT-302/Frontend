@@ -20,8 +20,8 @@ const StudentDashboard = () => {
         <>
             <section className="my-28">
                 <div>
-                    <h3 className="font-semibold">Hi, Ayomide</h3>
-                    <p className="figcaption text-[#787878]">Where are you going today?</p>
+                    <h3 className="font-semibold text-[1.2rem] md:text-[1.5rem]">Hi, Ayomide</h3>
+                    <p className="text-[#787878] text-[.8rem] md:text-sm">Where are you going today?</p>
                 </div>
 
                 {/* Location Search box */}
@@ -46,13 +46,13 @@ const StudentDashboard = () => {
                 {/* request a ride btn */}
                 <div className="relative mt-8">
                     <Link to="/confirm-ride">
-                    <button onClick className="w-full bg-[--primary] py-[.9rem] rounded-[10px] text-white text-sm shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear">Request a Ride</button>
+                    <button onClick className="w-full bg-[--primary] py-[.7rem] sm:py-[.9rem] rounded-[10px] text-white shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear text-[.8rem] sm:text-sm">Request a Ride</button>
                     </Link>
                 </div>
 
                 {/* quick destination */}
                 <div className="mt-10">
-                    <h4 className="font-medium">Quick Destinations </h4>
+                    <h4 className="font-medium text-[.9rem] sm:text-[1rem]">Quick Destinations </h4>
                     <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2">
                         <QuickDestinationCard location={"Main Library"} distance="500m away" icon={<FaBook />} iconColor="bg-[#EBEFFF]" iconBgColor="text-[#1A46EA]" />
                         <QuickDestinationCard location={"New Hostel"} distance="1.2km away" icon={<FaHouse />} iconColor="bg-[#E3FFE0]" iconBgColor="text-[#12A704]" />
@@ -64,7 +64,7 @@ const StudentDashboard = () => {
                 
                 {/* recent rides */}
                 <div className="mt-10">
-                    <h4 className="font-medium">Recent Rides </h4>
+                    <h4 className="font-medium text-[.9rem] sm:text-[1rem]">Recent Rides </h4>
                     <div className="grid grid-cols-1 gap-4 mt-4">
                         <RecentRides location="3 in 1 LT" price="700.00" distance="2.7km" estimatedTime="12 mins" />
                         <RecentRides location="SOC" price="500.00" distance="1.7km" estimatedTime="4 mins" />
