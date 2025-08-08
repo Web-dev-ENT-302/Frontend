@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 // Icons
 import { IoArrowBack } from "react-icons/io5";
 import { FaCircle } from "react-icons/fa";
@@ -9,7 +10,6 @@ import { FaMoneyBill } from "react-icons/fa";
 import mapImage from "../../../assets/images/map-image2.svg"
 import { TbCurrencyNaira } from "react-icons/tb";
 import RideDetailsInfo from "../components/ui/RideDetailsInfo";
-import { Link } from "react-router-dom";
 
 const ConfirmRide = () => {
     return (
