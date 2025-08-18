@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 /* components */
 import Button from "../../../components/button/Button";
-import Spinner from "../../../components/spinner/spinner";
+import Spinner from "../../../components/Spinner";
 
 /* icons */
 import { FaUserGraduate } from "react-icons/fa6";

@@ -1,8 +1,9 @@
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 
 /* components */
+import Spinner from "../../../components/Spinner";
 import Button from '../../../components/button/Button'
 
 /* icons */
@@ -10,7 +11,6 @@ import { FaUserGraduate } from "react-icons/fa6";
 import { FaIdCard } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import { FaLock } from "react-icons/fa6";
-import Spinner from "../../../components/spinner/spinner";
 
 
 

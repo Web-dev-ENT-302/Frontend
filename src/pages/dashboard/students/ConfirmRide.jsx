@@ -13,7 +13,7 @@ import { FaClock, FaRoad } from "react-icons/fa6";
 import { RiEBike2Fill } from "react-icons/ri";
 import { FaMoneyBill } from "react-icons/fa";
 import { TbCurrencyNaira } from "react-icons/tb";
-import Spinner from "../../../components/spinner/spinner";
+import Spinner from "../../../components/Spinner";
 
 
 
