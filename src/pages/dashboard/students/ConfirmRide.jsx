@@ -4,7 +4,6 @@ import { useState } from "react";
 // components
 import mapImage from "../../../assets/images/svg/map-image2.svg"
 import RideDetailsInfo from "../components/ui/RideDetailsInfo";
-import Spinner from "../../../components/spinner/spinner";
 
 // Icons
 import { IoArrowBack } from "react-icons/io5";
@@ -14,6 +13,7 @@ import { FaClock, FaRoad } from "react-icons/fa6";
 import { RiEBike2Fill } from "react-icons/ri";
 import { FaMoneyBill } from "react-icons/fa";
 import { TbCurrencyNaira } from "react-icons/tb";
+import Spinner from "../../../components/spinner/spinner";
 
 
 
