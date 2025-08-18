@@ -2,7 +2,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 
 /* assets */
-import logo from "../../assets/images/logo.svg"
+import logo from "../../assets/images/svg/logo.svg"
 
 /* icons */
 import { FaRegQuestionCircle } from "react-icons/fa";

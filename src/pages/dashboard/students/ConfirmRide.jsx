@@ -1,4 +1,11 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+
+
+// components
+import mapImage from "../../../assets/images/svg/map-image2.svg"
+import RideDetailsInfo from "../components/ui/RideDetailsInfo";
+import Spinner from "../../../components/spinner/spinner";
+
 // Icons
 import { IoArrowBack } from "react-icons/io5";
 import { FaCircle } from "react-icons/fa";
@@ -6,12 +13,20 @@ import { IoLocationSharp } from "react-icons/io5";
 import { FaClock, FaRoad } from "react-icons/fa6";
 import { RiEBike2Fill } from "react-icons/ri";
 import { FaMoneyBill } from "react-icons/fa";
-
-import mapImage from "../../../assets/images/map-image2.svg"
 import { TbCurrencyNaira } from "react-icons/tb";
-import RideDetailsInfo from "../components/ui/RideDetailsInfo";
+
+
 
 const ConfirmRide = () => {
+    const [showSpinner, setShowSpinner] = useState(false);
+    /* Stimulated Confirm Ride Request */
+    const confirmRideRequest = () => {
+        setShowSpinner(true)
+
+        setTimeout(() => {
+            setShowSpinner(false)
+        }, 2000)
+    }
     return (
         <>
             <div>
@@ -124,13 +139,24 @@ const ConfirmRide = () => {
 
                         {/* confirm ride btn */}
                         <div className="mt-8">
-                            <button className="bg-[--primary] w-full rounded-[.5rem] py-[.7rem] text-white text-[.7rem] sm:text-[.8rem] md:text-[.9rem] font-semibold shadow-[0px_0px_10px_rgba(212,113,0,.4)] hover:scale-[.99] transition-all ease-linear">Confirm Ride Request</button>
+                            {
+                                showSpinner ?
+                                    <>
+                                        <button className="bg-[--primary] w-full rounded-[.5rem] py-[.7rem] text-white text-[.7rem] sm:text-[.8rem] md:text-[.9rem] font-semibold shadow-[0px_0px_10px_rgba(212,113,0,.4)] hover:scale-[.99] transition-all ease-linear flex  items-center justify-center gap-2 disabled:cursor-not-allowed" disabled>
+                                            <Spinner />
+                                            Please wait...
+                                        </button>
+                                    </> :
+                                    <>
+                                        <button className="bg-[--primary] w-full rounded-[.5rem] py-[.7rem] text-white text-[.7rem] sm:text-[.8rem] md:text-[.9rem] font-semibold shadow-[0px_0px_10px_rgba(212,113,0,.4)] hover:scale-[.99] transition-all ease-linear" onClick={() => confirmRideRequest()}>
+                                            Confirm Ride Request
+                                        </button>
+                                    </>
+                            }
                         </div>
 
                         <div className="flex justify-center mt-6">
-                            <Link to="/student-dashboard">
-                                <button className=" text-[#787878] font-medium text-[.8rem] sm:text-[.9rem] cursor-pointer">Cancel</button>
-                            </Link>
+                            <button className=" text-[#787878] font-medium text-[.8rem] sm:text-[.9rem] cursor-pointer">Cancel</button>
                         </div>
                     </div>
                 </section>
