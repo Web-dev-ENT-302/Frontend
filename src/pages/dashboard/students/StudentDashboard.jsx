@@ -1,21 +1,15 @@
-import { useState } from "react";
-import { Link } from "react-router-dom"
 
 import mapImage from "../../../assets/images/svg/map-image.svg"
 
 // components
-import QuickDestinationCard from "../components/ui/QuickDestinationCard";
 import RecentRides from "../components/ui/RecentRides";
 
 // icons
 import { FaLocationDot } from "react-icons/fa6";
 import { FaFlag } from "react-icons/fa6";
-import { FaBook } from "react-icons/fa6";
-import { FaHouse } from "react-icons/fa6";
-import { GiGate } from "react-icons/gi";
-import { MdSportsBasketball } from "react-icons/md";
 
 const StudentDashboard = () => {
+ 
     return (
         <>
             <section className="my-28">
@@ -53,10 +47,10 @@ const StudentDashboard = () => {
 
                 {/* request a ride btn */}
                 <div className="relative mt-8">
-                        <button className="w-full bg-[--primary] py-[.7rem] sm:py-[.9rem] rounded-[10px] text-white shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear text-[.8rem] sm:text-sm">Request a Ride</button>
+                    <button className="w-full bg-[--primary] py-[.7rem] sm:py-[.9rem] rounded-[10px] text-white shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear text-[.8rem] sm:text-sm">Request a Ride</button>
                 </div>
 
-            
+
                 {/* rides */}
                 <div className="mt-10">
                     <h4 className="font-medium text-[.9rem] sm:text-[1rem]">My Rides </h4>

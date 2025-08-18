@@ -80,15 +80,12 @@ const ToastNotification = () => {
                 return (
                     <div
                         key={notif.id}
-                        className={`
-              flex items-center gap-3 px-4 py-3 rounded-[.8rem] border
-              ${notif.bgColor} ${notif.borderColor}
-              transform transition-all duration-300 ease-in-out cursor-pointer min-w-[250px] max-w-[250px] w-[100%] shadow-md
-            `}
+                        className={`flex items-center gap-3 px-4 py-3 rounded-[.8rem] border
+                                    ${notif.bgColor} ${notif.borderColor}
+                                    transform transition-all duration-300 ease-in-out cursor-pointer min-w-[250px] max-w-[250px] w-[100%] shadow-md`}
                         onClick={() => removeNotification(notif.id)}>
-                        <IconComponent
-                            className={`w-4 h-4 md:w-5 md:h-5 ${notif.color} ${notif.type === 'in-progress' ? 'animate-spin' : ''}`} />
-                        <span className={`font-medium ${notif.color} text-[.75rem] md:text-[.8rem]`}>
+                        <IconComponent className={`w-4 h-4 md:w-7 md:h-5 ${notif.color} ${notif.type === 'in-progress' ? 'animate-spin' : ''}`} />
+                        <span className={`font-medium ${notif.color} text-[.7rem] md:text-[.8rem]`}>
                             {notif.message}
                         </span>
                     </div>
