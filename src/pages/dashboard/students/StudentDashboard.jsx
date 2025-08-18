@@ -1,7 +1,7 @@
 import { useState } from "react";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom"
 
-import mapImage from "../../../assets/images/map-image.svg"
+import mapImage from "../../../assets/images/svg/map-image.svg"
 
 // components
 import QuickDestinationCard from "../components/ui/QuickDestinationCard";
@@ -29,11 +29,19 @@ const StudentDashboard = () => {
                     <div>
                         <div className="relative">
                             <FaLocationDot className="absolute top-[.9rem] left-[.9rem] text-[#FFA238]" />
-                            <input type="text" className="bg-[#F5F0E9] w-full rounded-full py-3 outline-none px-10 text-sm" placeholder="New Hostel"/>
+                            <select className="bg-[#F5F0E9] w-full rounded-full py-3 outline-none px-10 text-sm text-[#787878]">
+                                <option value="">Current Location</option>
+                                <option value="SOC" className="text-black">SOC</option>
+                                <option value="SEET" className="text-black">SEET</option>
+                            </select>
                         </div>
                         <div className="relative mt-3">
                             <FaFlag className="absolute top-[.9rem] left-[.9rem] text-[#486FFF]" />
-                            <input type="text" className="bg-[#F5F0E9] w-full rounded-full py-3 outline-none px-10 text-sm" placeholder="Where to?" />
+                            <select className="bg-[#F5F0E9] w-full rounded-full py-3 outline-none px-10 text-sm text-[#787878]">
+                                <option value="">Destination</option>
+                                <option value="SOC" className="text-black">SOC</option>
+                                <option value="SEET" className="text-black">SEET</option>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -45,26 +53,13 @@ const StudentDashboard = () => {
 
                 {/* request a ride btn */}
                 <div className="relative mt-8">
-                    <Link to="/confirm-ride">
-                    <button onClick className="w-full bg-[--primary] py-[.7rem] sm:py-[.9rem] rounded-[10px] text-white shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear text-[.8rem] sm:text-sm">Request a Ride</button>
-                    </Link>
+                        <button className="w-full bg-[--primary] py-[.7rem] sm:py-[.9rem] rounded-[10px] text-white shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear text-[.8rem] sm:text-sm">Request a Ride</button>
                 </div>
 
-                {/* quick destination */}
+            
+                {/* rides */}
                 <div className="mt-10">
-                    <h4 className="font-medium text-[.9rem] sm:text-[1rem]">Quick Destinations </h4>
-                    <div className="grid grid-cols-1 gap-4 mt-4 sm:grid-cols-2">
-                        <QuickDestinationCard location={"Main Library"} distance="500m away" icon={<FaBook />} iconColor="bg-[#EBEFFF]" iconBgColor="text-[#1A46EA]" />
-                        <QuickDestinationCard location={"New Hostel"} distance="1.2km away" icon={<FaHouse />} iconColor="bg-[#E3FFE0]" iconBgColor="text-[#12A704]" />
-                        <QuickDestinationCard location={"South Gate"} distance="2.7km away" icon={<GiGate />} iconColor="bg-[#FFEBD7]" iconBgColor="text-[#AE5700]" />
-                        <QuickDestinationCard location={"Sport Complex"} distance="1.5km away" icon={<MdSportsBasketball />} iconColor="bg-[#FFEAEA]" iconBgColor="text-[#DD0000]" />
-                    </div>
-                </div>
-
-                
-                {/* recent rides */}
-                <div className="mt-10">
-                    <h4 className="font-medium text-[.9rem] sm:text-[1rem]">Recent Rides </h4>
+                    <h4 className="font-medium text-[.9rem] sm:text-[1rem]">My Rides </h4>
                     <div className="grid grid-cols-1 gap-4 mt-4">
                         <RecentRides location="3 in 1 LT" price="700.00" distance="2.7km" estimatedTime="12 mins" />
                         <RecentRides location="SOC" price="500.00" distance="1.7km" estimatedTime="4 mins" />
