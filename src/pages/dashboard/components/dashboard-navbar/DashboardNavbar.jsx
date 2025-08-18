@@ -1,5 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 
 /* assets */
 import logo from "../../../../assets/images/svg/logo.svg"
@@ -7,13 +7,15 @@ import logo from "../../../../assets/images/svg/logo.svg"
 /* icons */
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { LuMenu } from "react-icons/lu";
+import { AuthContext } from '../../../../contexts/AuthContext';
 
 
 const DashboardNavbar = () => {
+    const { user, logout } = useContext(AuthContext);
+
     const [showOverlay, setShowOverlay] = useState(false);
     const [showSideBar, setShowSideBar] = useState(false);
 
-    const navigate = useNavigate()
 
     // Handler to open the side bar
     function openSideBar() {
@@ -76,7 +78,12 @@ const DashboardNavbar = () => {
                                 <Link to="/help">
                                     <li className='figcaption'>
                                         <span className='flex items-center gap-1'>
-                                            <FaRegQuestionCircle /> Help
+                                            {user ?
+                                                <>
+                                                    <button onClick={logout}>logout</button>
+                                                </> : <>
+                                                    <FaRegQuestionCircle /> Help
+                                                </>}
                                         </span>
                                     </li>
                                 </Link>
@@ -84,7 +91,7 @@ const DashboardNavbar = () => {
                                 <Link to="/profile">
                                     <li className='figcaption'>
                                         <span className='px-4 py-2 text-black bg-white rounded-[2rem] shadow-md'>
-                                            Ayomide
+                                            {user?.name}
                                         </span>
                                     </li>
                                 </Link>
