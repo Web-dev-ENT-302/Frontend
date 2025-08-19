@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { jwtDecode } from 'jwt-decode';
 
 /* components */
 import Spinner from "../../../components/Spinner";
@@ -64,7 +65,7 @@ const Login = () => {
                 // Handle Failed Response
                 setFeedback({ Status: true, Type: "failed", Message: data.error });
 
-                // Explicitly check for invalid crendential
+                // Explicitly check for invalid crendential error
                 if (data.error === "Invalid credentials") {
                     setFeedback({ Status: true, Type: "failed", Message: data.error });
                 }
@@ -72,8 +73,14 @@ const Login = () => {
             }
 
             // handle success response
-            login(data);
-           
+            const userRole = jwtDecode(data.token).role; // decode token and fetch user's role
+            // verify if user is initiating log from the designated tab
+            if (tab.toUpperCase() === userRole) {
+                login(data); // proceed to log user in
+            } else {
+                setFeedback({ Status: true, Type: "failed", Message: "Invalid credentials" });
+                return;
+            }
         } catch (err) {
             console.error("Login error:", err.message);
         } finally {
@@ -125,7 +132,7 @@ const Login = () => {
                         <form method="POST" onSubmit={handleSubmit}>
                             {/* email */}
                             <div className="mb-5">
-                                <label htmlFor="" className="figcaption">Email</label>
+                                <label htmlFor="email" className="figcaption">Email</label>
                                 <div className="relative mt-1">
                                     <IoMail className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
                                     <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your email" required />
@@ -135,7 +142,7 @@ const Login = () => {
 
                             {/* password */}
                             <div className="mb-5">
-                                <label htmlFor="" className="figcaption">Password</label>
+                                <label htmlFor="password" className="figcaption">Password</label>
                                 <div className="relative mt-1">
                                     <FaLock className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
                                     <input type="password" name="password" value={formData.password} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your password" required />
