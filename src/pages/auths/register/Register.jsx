@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 /* components */
 import Button from "../../../components/button/Button";
-import Spinner from "../../../components/spinner/spinner";
+import Spinner from "../../../components/Spinner";
 
 /* icons */
 import { FaUserGraduate } from "react-icons/fa6";
@@ -84,10 +84,15 @@ const Register = () => {
       // Check if the response was successful
       if (!res.ok) {
         // Handle Failed Response
-        setFeedback({ Status: true, Type: "failed", Message: "Registration failed" });
+        setFeedback({ Status: true, Type: "failed", Message: data.error });
 
-        // log feedback to console
-        console.log(data.error)
+        /* 
+        Explicitly check for error if plate number format do not match
+        so as to display a shoter message instead of the long data.error msg from server
+        */
+        if (data.error === "Plate number is required for drivers and must be in the format ABC-123DE") {
+          setFeedback({ Status: true, Type: "failed", Message: "Plate number must be in the format ABC-123DE" });
+        }
         return;
       }
 

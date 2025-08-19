@@ -42,6 +42,7 @@ export const AuthProvider = ({ children }) => {
         navigate('/login');
     };
 
+    // verify token and fetch user data
     useEffect(() => {
         const token = Cookies.get('token'); // get token from storage
 
@@ -59,6 +60,7 @@ export const AuthProvider = ({ children }) => {
 
                 const userId = decodedToken.id; // Access id of the user
                 setIsAuthenticated(true); // Authenticate user
+                
                 setUser({ name: "Stroge" }); // dummy user data
                 setToken(token) // set token
 
