@@ -1,6 +1,9 @@
 
 import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import mapImage from "../../../assets/images/svg/map-image.svg"
+
 import { AuthContext } from "../../../contexts/AuthContext";
 
 // components
@@ -15,69 +18,45 @@ const StudentDashboard = () => {
     const { user, token } = useContext(AuthContext) // user data
     const [currentLocation, setLocation] = useState("");
     const [destination, setDestination] = useState("")
-    const [loading, setLoading] = useState(false)
+    // const [loading, setLoading] = useState(false)
+
+    const navigate = useNavigate()
 
 
     // handle request
     const requestRide = async (e) => {
         e.preventDefault();
-        setLoading(true);
 
         if (currentLocation === "") {
             Notification("failed", "Select current location");
-            setLoading(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             return
         } else if (destination === "") {
             Notification("failed", "Select your destination")
-            setLoading(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             return
         } else if (currentLocation === destination) {
             Notification("failed", "Same location")
-            setLoading(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             return
         }
 
 
-        // request ride
-        try {
-            const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/rides/request`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`,
-                },
-                body: JSON.stringify({
-                    pickup: currentLocation,
-                    destination: destination,
-                }),
-                credentials: 'include'
-            })
-
-            const data = await res.json();
-
-            if (!res.ok) {
-                // Handle Failed Response
-                Notification("failed", data.error)
-                console.log(token)
-                return;
+        // proceed to confirm ride
+        navigate('/confirm-ride', {
+            state: {
+                from: currentLocation,
+                to: destination
             }
-
-            // handle suucess response
-            Notification("success", "Ride requested successfully");
-        } catch (err) {
-            Notification("failed", err.message)
-        } finally {
-            setLoading(false);
-        }
-
+        });
     }
 
 
     return (
         <>
-            <section className="my-28">
+            <section className="my-24">
                 <div>
-                    <h3 className="font-semibold text-[1.2rem] md:text-[1.5rem]">Hi, {user?.name}</h3>
+                    <h3 className="font-semibold text-[1.2rem] md:text-[1.5rem] capitalize">Hi, {user?.name}</h3>
                     <p className="text-[#787878] text-[.8rem] md:text-sm">Where are you going today?</p>
                 </div>
 
@@ -110,7 +89,7 @@ const StudentDashboard = () => {
 
                 {/* request a ride btn */}
                 <div className="relative mt-8">
-                    {
+                    {/* {
                         loading ?
                             <>
                                 <button className="w-full bg-[--primary] py-[.7rem] sm:py-[.9rem] rounded-[10px] text-white shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear text-[.8rem] sm:text-sm flex  items-center justify-center gap-2 disabled:cursor-not-allowed" disabled>
@@ -122,17 +101,23 @@ const StudentDashboard = () => {
                             <>
                                 <button form="requestRideForm" className="w-full bg-[--primary] py-[.7rem] sm:py-[.9rem] rounded-[10px] text-white shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear text-[.8rem] sm:text-sm">Request a Ride</button>
                             </>
-                    }
+                    } */}
+                    <button form="requestRideForm" className="w-full bg-[--primary] py-[.7rem] sm:py-[.9rem] rounded-[10px] text-white shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear text-[.8rem] sm:text-sm">Request a Ride</button>
+
 
                 </div>
 
 
                 {/* rides */}
-                <div className="mt-10">
+                <div className="mt-14">
                     <h4 className="font-medium text-[.9rem] sm:text-[1rem]">My Rides </h4>
                     <div className="grid grid-cols-1 gap-4 mt-4">
-                        <RecentRides location="3 in 1 LT" price="700.00" distance="2.7km" estimatedTime="12 mins" />
-                        <RecentRides location="SOC" price="500.00" distance="1.7km" estimatedTime="4 mins" />
+                        <RecentRides location="3 in 1 LT" price="700.00" distance="2.7km" estimatedTime="12 mins" status="pending"/>
+                        <RecentRides location="SOC" price="500.00" distance="1.7km" estimatedTime="4 mins" status="completed"/>
+                        <RecentRides location="SEET" price="500.00" distance="1.7km" estimatedTime="4 mins" status="rejected"/>
+                        <RecentRides location="SEET" price="500.00" distance="1.7km" estimatedTime="4 mins" status="completed"/>
+                        <RecentRides location="SEET" price="500.00" distance="1.7km" estimatedTime="4 mins" status="completed"/>
+                        <RecentRides location="SEET" price="500.00" distance="1.7km" estimatedTime="4 mins" status="rejected"/>
                     </div>
                 </div>
             </section>
