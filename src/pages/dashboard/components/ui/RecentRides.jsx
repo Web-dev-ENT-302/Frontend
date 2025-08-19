@@ -5,13 +5,13 @@ import { TbCurrencyNaira } from "react-icons/tb"
 
 const RecentRides = ({ location, price, distance, estimatedTime }) => {
     const viewRide = () => {
-        alert(1)
+        Notification("in-progress", "Dev is busy implementing this feature  :)")
     }
     return (
         <div className="p-4 bg-white rounded-[10px] shadow-[0px_0px_10px_rgba(0,0,0,0.04)] flex gap-3 items-center cursor-pointer hover:shadow-[0px_0px_10px_rgba(0,0,0,0.1)]  transition-all ease-linear" onClick={() => viewRide()}>
             <div className="w-full">
                 <div className="flex items-center justify-between">
-                    <div className="flex gap-2 items-center">
+                    <div className="flex items-center gap-2">
                         <span className={`bg-[#EFEFEF] p-[.4rem] text-[1.1rem] rounded-full text-[#3A3A3A]`}>
                             <MdHistory />
                         </span>

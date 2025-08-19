@@ -73,10 +73,10 @@ const Login = () => {
 
             // handle success response
             login(data);
-           
+
         } catch (err) {
-            console.error("Login error:", err.message);
-            setError(err.message);
+            setFeedback({ Status: true, Type: "failed", Message: err.message });
+            // console.error("Login error:", err.message);
         } finally {
             setLoading(false);
         }

@@ -99,7 +99,6 @@ const Register = () => {
       navigate("/login")
     } catch (err) {
       setFeedback({ Status: true, Type: "failed", Message: err.message });
-      console.log(err);
     } finally {
       setLoading(false);
     }

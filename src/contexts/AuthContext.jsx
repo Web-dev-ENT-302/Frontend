@@ -12,8 +12,9 @@ export const AuthProvider = ({ children }) => {
         const token = Cookies.get('token');
         return !!token;
     });
-    
+
     const [user, setUser] = useState(null);
+    const [token, setToken] = useState(null)
 
     const navigate = useNavigate();
 
@@ -58,7 +59,8 @@ export const AuthProvider = ({ children }) => {
 
                 const userId = decodedToken.id; // Access id of the user
                 setIsAuthenticated(true); // Authenticate user
-                setUser({ name: "Timmy" }); // dummy user data
+                setUser({ name: "Stroge" }); // dummy user data
+                setToken(token) // set token
 
                 // Make request with the user id to fetch the data of the user...
 
@@ -76,6 +78,7 @@ export const AuthProvider = ({ children }) => {
     const value = {
         isAuthenticated,
         user,
+        token,
         login: handleLogin,
         logout: handleLogout
     };
