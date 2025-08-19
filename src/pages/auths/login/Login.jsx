@@ -73,13 +73,6 @@ const Login = () => {
             }
 
             // handle success response
-
-            login(data);
-
-        } catch (err) {
-            setFeedback({ Status: true, Type: "failed", Message: err.message });
-            // console.error("Login error:", err.message);
-
             const userRole = jwtDecode(data.token).role; // decode token and fetch user's role
             // verify if user is initiating log from the designated tab
             if (tab.toUpperCase() === userRole) {
@@ -88,6 +81,8 @@ const Login = () => {
                 setFeedback({ Status: true, Type: "failed", Message: "Invalid credentials" });
                 return;
             }
+        } catch (err) {
+            setFeedback({ Status: true, Type: "failed", Message: err.message });
         } finally {
             setLoading(false);
         }
@@ -140,7 +135,7 @@ const Login = () => {
                                 <label htmlFor="email" className="figcaption">Email</label>
                                 <div className="relative mt-1">
                                     <IoMail className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                                    <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your email" required />
+                                    <input type="email" id="email" name="email" autoComplete="on" value={formData.email} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your email" required />
                                 </div>
                             </div>
 
@@ -150,7 +145,7 @@ const Login = () => {
                                 <label htmlFor="password" className="figcaption">Password</label>
                                 <div className="relative mt-1">
                                     <FaLock className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                                    <input type="password" name="password" value={formData.password} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your password" required />
+                                    <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your password" required />
                                 </div>
                             </div>
 

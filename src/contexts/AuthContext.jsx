@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
         const decodedToken = jwtDecode(data.token); // decode token to extract (id, role, exp)
         setIsAuthenticated(true); // authenticate user
         setUser(data.user);
+        setToken(data.token)
 
 
         // Redirect based on role, use the role from the decoded token to redirect user
@@ -39,6 +40,7 @@ export const AuthProvider = ({ children }) => {
         Cookies.remove('token');
         setIsAuthenticated(false);
         setUser(null);
+        setToken(null);
         navigate('/login');
     };
 
@@ -60,7 +62,6 @@ export const AuthProvider = ({ children }) => {
 
                 const userId = decodedToken.id; // Access id of the user
                 setIsAuthenticated(true); // Authenticate user
-                
                 setUser({ name: "Stroge" }); // dummy user data
                 setToken(token) // set token
 
@@ -75,6 +76,7 @@ export const AuthProvider = ({ children }) => {
             // No token found, ensure user is logged out
             setIsAuthenticated(false);
             setUser(null);
+            setToken(null)
         }
     }, []);
     const value = {

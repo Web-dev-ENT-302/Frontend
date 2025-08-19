@@ -9,7 +9,7 @@ import RecentRides from "../components/ui/RecentRides";
 // icons
 import { FaLocationDot } from "react-icons/fa6";
 import { FaFlag } from "react-icons/fa6";
-import Spinner from "../../../components/spinner/spinner";
+import Spinner from "../../../components/Spinner";
 
 const StudentDashboard = () => {
     const { user, token } = useContext(AuthContext) // user data
@@ -58,6 +58,7 @@ const StudentDashboard = () => {
             if (!res.ok) {
                 // Handle Failed Response
                 Notification("failed", data.error)
+                console.log(token)
                 return;
             }
 
