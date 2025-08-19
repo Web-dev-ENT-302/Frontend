@@ -13,6 +13,9 @@ import StudentDashboard from './pages/dashboard/students/StudentDashboard'
 import DashboardLayout from './pages/dashboard/components/layout/DashboardLayout'
 import ConfirmRide from './pages/dashboard/students/ConfirmRide'
 
+/* hooks */
+import ScrollToTop from './hooks/useScrollToTop'
+
 /* styles */
 import './App.css'
 
@@ -20,6 +23,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
+        <ScrollToTop /> {/* scroll to top hook */}
         <ToastNotification /> {/* Reuseable component that displays a toast notification when called i.e: Notification('success', 'Something was successful'); */}
 
         <AuthProvider>
@@ -47,7 +51,7 @@ function App() {
 
             {/* Handle Invalid Routes */}
             <Route path='*' element={<MainLayout><Register /></MainLayout>} />
-            
+
           </Routes>
         </AuthProvider>
       </BrowserRouter>

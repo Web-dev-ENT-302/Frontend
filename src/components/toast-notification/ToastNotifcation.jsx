@@ -36,7 +36,7 @@ const ToastNotification = () => {
 
     };
 
-    const notification = (type, message = null, duration = 7000) => {
+    const notification = (type, message = null, duration = 3000) => {
         const id = Date.now() + Math.random();
         const config = statusConfig[type];
 
@@ -72,7 +72,7 @@ const ToastNotification = () => {
     };
 
     return (
-        <div className="fixed z-[999] space-y-2 bottom-8 left-8">
+        <div className="fixed z-[999] space-y-2 bottom-8 left-4 md:left-8">
 
             {notifications.map((notif) => {
                 const IconComponent = notif.icon;
@@ -82,7 +82,7 @@ const ToastNotification = () => {
                         key={notif.id}
                         className={`flex items-center gap-3 px-4 py-3 rounded-[.8rem] border
                                     ${notif.bgColor} ${notif.borderColor}
-                                    transform transition-all duration-300 ease-in-out cursor-pointer min-w-[250px] max-w-[250px] w-[100%] shadow-md`}
+                                    transform transition-all duration-300 ease-in-out cursor-pointer min-w-[250px] max-w-[250px] sm:max-w-[100%] w-[100%] shadow-md`}
                         onClick={() => removeNotification(notif.id)}>
                         <IconComponent className={`w-4 h-4 md:w-7 md:h-5 ${notif.color} ${notif.type === 'in-progress' ? 'animate-spin' : ''}`} />
                         <span className={`font-medium ${notif.color} text-[.7rem] md:text-[.8rem]`}>

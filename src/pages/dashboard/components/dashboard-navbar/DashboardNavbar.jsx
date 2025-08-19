@@ -76,13 +76,20 @@ const DashboardNavbar = () => {
                         <div className="hidden sm:block">
                             <ul className='flex items-center gap-[2rem] text-white'>
                                 {/* Nav Links */}
+                                <Link to="">
+                                    <li className='figcaption'>
+                                        <span className='px-4 py-[.4rem] text-black bg-white rounded-[2rem] shadow-md'>
+                                            {user?.name}
+                                        </span>
+                                    </li>
+                                </Link>
                                 {
                                     user ?
                                         <>
                                             <button onClick={logout}>
                                                 <li className='figcaption'>
                                                     <span className='flex items-center gap-1'>
-                                                        <RiLogoutBoxRLine /> Logout
+                                                        <RiLogoutBoxRLine className='text-[1rem]'/> Logout
                                                     </span>
                                                 </li>
                                             </button>
@@ -101,13 +108,7 @@ const DashboardNavbar = () => {
 
 
 
-                                <Link to="">
-                                    <li className='figcaption'>
-                                        <span className='px-4 py-2 text-black bg-white rounded-[2rem] shadow-md'>
-                                            {user?.name}
-                                        </span>
-                                    </li>
-                                </Link>
+
                             </ul>
                         </div>
 
