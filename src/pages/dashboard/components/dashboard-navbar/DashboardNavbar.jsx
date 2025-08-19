@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useContext, useState } from 'react';
+import { AuthContext } from '../../../../contexts/AuthContext';
 
 /* assets */
 import logo from "../../../../assets/images/svg/logo.svg"
@@ -7,7 +8,7 @@ import logo from "../../../../assets/images/svg/logo.svg"
 /* icons */
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { LuMenu } from "react-icons/lu";
-import { AuthContext } from '../../../../contexts/AuthContext';
+import { RiLogoutBoxRLine } from 'react-icons/ri';
 
 
 const DashboardNavbar = () => {
@@ -50,7 +51,7 @@ const DashboardNavbar = () => {
             case "logout":
                 removeSidebar() /* closes the side bar */
                 //
-                console.log("logout")
+                logout()
                 break;
 
             default:
@@ -65,7 +66,7 @@ const DashboardNavbar = () => {
                     <div className="flex items-center justify-between">
 
                         {/* Logo */}
-                        <Link to="/">
+                        <Link to="">
                             <div className="sm:w-[90%] w-[75%] ">
                                 <img src={logo} alt="logo" className='object-cover w-full' />
                             </div>
@@ -75,20 +76,32 @@ const DashboardNavbar = () => {
                         <div className="hidden sm:block">
                             <ul className='flex items-center gap-[2rem] text-white'>
                                 {/* Nav Links */}
-                                <Link to="/help">
-                                    <li className='figcaption'>
-                                        <span className='flex items-center gap-1'>
-                                            {user ?
-                                                <>
-                                                    <button onClick={logout}>logout</button>
-                                                </> : <>
-                                                    <FaRegQuestionCircle /> Help
-                                                </>}
-                                        </span>
-                                    </li>
-                                </Link>
+                                {
+                                    user ?
+                                        <>
+                                            <button onClick={logout}>
+                                                <li className='figcaption'>
+                                                    <span className='flex items-center gap-1'>
+                                                        <RiLogoutBoxRLine /> Logout
+                                                    </span>
+                                                </li>
+                                            </button>
+                                        </>
+                                        :
+                                        <>
+                                            <Link to="/help">
+                                                <li className='figcaption'>
+                                                    <span className='flex items-center gap-1'>
+                                                        <FaRegQuestionCircle /> Help
+                                                    </span>
+                                                </li>
+                                            </Link>
+                                        </>
+                                }
 
-                                <Link to="/profile">
+
+
+                                <Link to="">
                                     <li className='figcaption'>
                                         <span className='px-4 py-2 text-black bg-white rounded-[2rem] shadow-md'>
                                             {user?.name}

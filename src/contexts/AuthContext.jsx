@@ -12,8 +12,9 @@ export const AuthProvider = ({ children }) => {
         const token = Cookies.get('token');
         return !!token;
     });
-    
+
     const [user, setUser] = useState(null);
+    const [token, setToken] = useState(null)
 
     const navigate = useNavigate();
 
@@ -24,6 +25,7 @@ export const AuthProvider = ({ children }) => {
         const decodedToken = jwtDecode(data.token); // decode token to extract (id, role, exp)
         setIsAuthenticated(true); // authenticate user
         setUser(data.user);
+        setToken(data.token)
 
 
         // Redirect based on role, use the role from the decoded token to redirect user
@@ -38,6 +40,7 @@ export const AuthProvider = ({ children }) => {
         Cookies.remove('token');
         setIsAuthenticated(false);
         setUser(null);
+        setToken(null);
         navigate('/login');
     };
 
@@ -59,7 +62,8 @@ export const AuthProvider = ({ children }) => {
 
                 const userId = decodedToken.id; // Access id of the user
                 setIsAuthenticated(true); // Authenticate user
-                setUser({ id: userId, name: "Timmy" }); // dummy user data
+                setUser({ name: "Stroge" }); // dummy user data
+                setToken(token) // set token
 
                 // Make request with the user id to fetch the data of the user...
 
@@ -72,11 +76,13 @@ export const AuthProvider = ({ children }) => {
             // No token found, ensure user is logged out
             setIsAuthenticated(false);
             setUser(null);
+            setToken(null)
         }
     }, []);
     const value = {
         isAuthenticated,
         user,
+        token,
         login: handleLogin,
         logout: handleLogout
     };

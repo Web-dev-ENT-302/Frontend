@@ -98,13 +98,11 @@ const Register = () => {
 
       // Handle successful response
       setFeedback({ Status: true, Type: "success", Message: "Account created successfully!" });
-      console.log(data)
 
       /* redirect user to login page */
       navigate("/login")
     } catch (err) {
       setFeedback({ Status: true, Type: "failed", Message: err.message });
-      console.log(err);
     } finally {
       setLoading(false);
     }
@@ -154,50 +152,50 @@ const Register = () => {
             <form method="POST" onSubmit={handleSubmit}>
               {/* full name */}
               <div className="mb-5">
-                <label htmlFor="" className="text-[.8rem] md:figcaption">Full Name</label>
+                <label htmlFor="name" className="text-[.8rem] md:figcaption">Full Name</label>
                 <div className="relative mt-1">
                   <FaUser className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                  <input type="text" name="name" value={formData.name} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your full name" required />
+                  <input type="text" id="name" name="name" autoComplete="on" value={formData.name} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your full name" required />
                 </div>
               </div>
 
 
               {/* email */}
               <div className="mb-5">
-                <label htmlFor="" className="figcaption">Email</label>
+                <label htmlFor="email" className="figcaption">Email</label>
                 <div className="relative mt-1">
                   <IoMail className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                  <input type="email" name="email" value={formData.email} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your email" required />
+                  <input type="email" id="email" name="email" autoComplete="on" value={formData.email} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your email" required />
                 </div>
               </div>
 
 
               {/* password */}
               <div className="mb-5">
-                <label htmlFor="" className="figcaption">Password</label>
+                <label htmlFor="password" className="figcaption">Password</label>
                 <div className="relative mt-1">
                   <FaLock className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                  <input type="password" name="password" value={formData.password} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Create a password" required />
+                  <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Create a password" required />
                 </div>
               </div>
 
 
               {/* confirm password */}
               <div className="mb-5">
-                <label htmlFor="" className="figcaption">Confirm Password</label>
+                <label htmlFor="confirmPassword" className="figcaption">Confirm Password</label>
                 <div className="relative mt-1">
                   <FaLock className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                  <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className="w-full text-[#929292] py-[.6rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Confirm your password" required />
+                  <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className="w-full text-[#929292] py-[.6rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Confirm your password" required />
                 </div>
               </div>
 
               {/* Tricycle Plate Number: Input is dplayed when user switch to drivers tab */}
               {tab === "driver" &&
                 <div className="mb-5">
-                  <label htmlFor="" className="figcaption">Tricycle Plate Number</label>
+                  <label htmlFor="plateNumber" className="figcaption">Tricycle Plate Number</label>
                   <div className="relative mt-1">
                     <FaIdCard className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                    <input type="text" name="plateNumber" value={formData.plateNumber} onChange={handleChange} className="w-full text-[#929292] py-[.6rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your plate number" required />
+                    <input type="text" id="plateNumber" name="plateNumber" value={formData.plateNumber} onChange={handleChange} className="w-full text-[#929292] py-[.6rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your plate number" required />
                   </div>
                 </div>
               }
