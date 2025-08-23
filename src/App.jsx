@@ -18,6 +18,7 @@ import ScrollToTop from './hooks/useScrollToTop'
 
 /* styles */
 import './App.css'
+import DriverDashboard from './pages/dashboard/driver/DriverDashboard'
 
 function App() {
   return (
@@ -33,8 +34,8 @@ function App() {
             <Route path='/login' element={<MainLayout><Login /></MainLayout>} />
             <Route path='/register' element={<MainLayout><Register /></MainLayout>} />
 
-            {/* Protected Dashboard Route*/}
-            <Route path='/student-dashboard' element={
+            {/* Protected  Route(STUDENT)*/}
+            <Route path='/student' element={
               <ProtectedRoute>
                 <DashboardLayout>
                   <StudentDashboard />
@@ -43,12 +44,21 @@ function App() {
             } />
 
             {/* confirm ride page */}
-            <Route path='/confirm-ride'
+            <Route path='/student/confirm-ride'
               element={
                 <ProtectedRoute>
                   <ConfirmRide />
                 </ProtectedRoute>} />
 
+
+            {/* Protected  Route(DRIVER)*/}
+            <Route path='/driver' element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <DriverDashboard />
+                </DashboardLayout>
+              </ProtectedRoute>
+            } />
             {/* Handle Invalid Routes */}
             <Route path='*' element={<MainLayout><Register /></MainLayout>} />
 

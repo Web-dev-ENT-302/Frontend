@@ -69,6 +69,10 @@ p {
   font-size: 0.875rem; /* 14px */
 }
 
+li {
+  list-style-type: none;
+}
+
 body {
   background-color: var(--background);
   scroll-behavior: smooth;
@@ -81,10 +85,18 @@ body {
   margin: 0 auto;
 }
 
+.driver-dashboard-container {
+  width: 100%;
+}
+
 /* Media Queries */
 @media (min-width: 1500px) {
   .container {
     width: 100%;
+    max-width: 70%;
+    margin: 0 auto;
+  }
+  .driver-dashboard-container {
     max-width: 70%;
     margin: 0 auto;
   }

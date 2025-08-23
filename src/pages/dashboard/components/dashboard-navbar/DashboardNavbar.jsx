@@ -1,9 +1,10 @@
-import { Link, useNavigate } from 'react-router-dom'
-import { useContext, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom'
+import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../../contexts/AuthContext';
 
 /* assets */
 import logo from "../../../../assets/images/svg/logo.svg"
+import defaulProfileImage from "../../../../assets/images/profileImages/defaultProfile.png"
 
 /* icons */
 import { FaRegQuestionCircle } from "react-icons/fa";
@@ -16,6 +17,10 @@ const DashboardNavbar = () => {
 
     const [showOverlay, setShowOverlay] = useState(false);
     const [showSideBar, setShowSideBar] = useState(false);
+    const [role, setRole] = useState("")
+    const [status, setStatus] = useState(true)
+
+    const { pathname } = useLocation()
 
 
     // Handler to open the side bar
@@ -59,9 +64,17 @@ const DashboardNavbar = () => {
         }
     }
 
+    useEffect(() => {
+        if (pathname.startsWith('/driver')) {
+            setRole("DRIVER")
+        } else {
+            setRole("STUDENT")
+        }
+    }, [pathname]) // This re-runs only when `pathname` changes.
+
     return (
         <>
-            <nav className="bg-[--primary] py-4 fixed top-0 left-0 w-full z-[100]" >
+            <nav className={`bg-[--primary] ${role === "STUDENT" ? 'py-4' : 'py-[.6rem]'} fixed top-0 left-0 w-full z-[100]`} >
                 <div className="container">
                     <div className="flex items-center justify-between">
 
@@ -73,44 +86,87 @@ const DashboardNavbar = () => {
                         </Link>
 
                         {/* Nav Links: visible on larger screen */}
-                        <div className="hidden sm:block">
-                            <ul className='flex items-center gap-[2rem] text-white'>
-                                {/* Nav Links */}
-                                <Link to="">
-                                    <li className='figcaption'>
-                                        <span className='px-4 py-[.4rem] text-black bg-white rounded-[2rem] shadow-md'>
-                                            {user?.name}
-                                        </span>
-                                    </li>
-                                </Link>
-                                {
-                                    user ?
-                                        <>
-                                            <button onClick={logout}>
-                                                <li className='figcaption'>
-                                                    <span className='flex items-center gap-1'>
-                                                        <RiLogoutBoxRLine className='text-[1rem]'/> Logout
-                                                    </span>
-                                                </li>
-                                            </button>
-                                        </>
-                                        :
-                                        <>
-                                            <Link to="/help">
-                                                <li className='figcaption'>
-                                                    <span className='flex items-center gap-1'>
-                                                        <FaRegQuestionCircle /> Help
-                                                    </span>
-                                                </li>
-                                            </Link>
-                                        </>
-                                }
+                        {role === "STUDENT" ?
+                            <>
+                                <div className="hidden sm:block">
+                                    <ul className='flex items-center gap-[2rem] text-white'>
+                                        {/* Nav Links */}
+                                        <Link to="">
+                                            <li className='figcaption'>
+                                                <span className='px-4 py-[.4rem] text-black bg-white rounded-[2rem] shadow-md'>
+                                                    {user?.name}
+                                                </span>
+                                            </li>
+                                        </Link>
+
+                                        {
+                                            user ?
+                                                <>
+                                                    <button onClick={logout}>
+                                                        <li className='figcaption'>
+                                                            <span className='flex items-center gap-1'>
+                                                                <RiLogoutBoxRLine className='text-[1rem]' /> Logout
+                                                            </span>
+                                                        </li>
+                                                    </button>
+                                                </>
+                                                :
+                                                <>
+                                                    <Link to="/help">
+                                                        <li className='figcaption'>
+                                                            <span className='flex items-center gap-1'>
+                                                                <FaRegQuestionCircle /> Help
+                                                            </span>
+                                                        </li>
+                                                    </Link>
+                                                </>
+                                        }
 
 
+                                    </ul>
+                                </div>
+                            </>
+                            :
+                            <>
+                                <div className="hidden sm:block">
+                                    <ul className='flex items-center gap-[1.5rem] text-white'>
+                                        {/* Nav Links */}
+                                        <li>
+                                            <div className='flex items-center gap-3'>
+                                                <div>
+                                                    <h4 className='capitalize md:text-[1rem] font-medium sm:text-[.8rem]'>{user?.name}</h4>
+                                                    <p className='flex justify-end sm:text-[.7rem] md:text-sm'>KKN 234 XY</p>
+                                                </div>
+                                                <Link to="">
+                                                    <div className='relative'>
+                                                        <div className={`sm:w-[2.5rem] sm:h-[2.5rem] md:w-[3rem]  md:h-[3rem] cursor-pointer rounded-full relative overflow-hidden ${status ? 'border border-[#12A704]' : 'border border-[#787878]'}`}>
+                                                            <img src={defaulProfileImage} alt="profile image" className='object-cover w-full' />
+                                                            {/* status indictor */}
+                                                        </div>
+                                                        <div className={`sm:w-2 sm:h-2 md:w-3 md:h-3 ${status ? 'bg-[#12A704]' : 'bg-[#787878]'} absolute rounded-full sm:right-[.3rem] sm:top-[2rem] md:right-[.1rem] md:top-[2.1rem]`}></div>
+                                                    </div>
+                                                </Link>
+                                            </div>
+                                        </li>
 
+                                        {
+                                            user ?
+                                                <>
+                                                    <button onClick={logout}>
+                                                        <li className='figcaption'>
+                                                            <span className='flex items-center gap-1'>
+                                                                <RiLogoutBoxRLine className='text-[1.3rem]' />
+                                                            </span>
+                                                        </li>
+                                                    </button>
+                                                </>
+                                                :
+                                                null
+                                        }
+                                    </ul>
+                                </div>
+                            </>}
 
-                            </ul>
-                        </div>
 
                         {/* Hamburger Icon: only visible on smaller screens */}
                         {/* when clicked, open the side bar */}

@@ -4,7 +4,7 @@ const DashboardLayout = ({ children }) => {
     return (
         <div>
             <DashboardNavbar />
-            <main className='container lg:px-[1.5rem]'>
+            <main>
                 {children}
             </main>
         </div>

@@ -72,7 +72,7 @@ const ToastNotification = () => {
     };
 
     return (
-        <div className="fixed z-[999] space-y-2 bottom-8 left-4 md:left-8">
+        <div className="fixed z-[999] space-y-2 top-4 right-4 md:right-12">
 
             {notifications.map((notif) => {
                 const IconComponent = notif.icon;

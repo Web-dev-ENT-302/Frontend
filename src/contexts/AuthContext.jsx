@@ -30,9 +30,9 @@ export const AuthProvider = ({ children }) => {
 
         // Redirect based on role, use the role from the decoded token to redirect user
         if (decodedToken.role === "STUDENT") {
-            navigate("/student-dashboard");
+            navigate("/student");
         } else {
-            navigate("/driver-dashboard");
+            navigate("/driver");
         }
     };
 
@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 
                 const userId = decodedToken.id; // Access id of the user
                 setIsAuthenticated(true); // Authenticate user
-                setUser({ name: "Stroge" }); // dummy user data
+                setUser({ name: "Samson James" }); // dummy user data
                 setToken(token) // set token
 
                 // Make request with the user id to fetch the data of the user...
