@@ -58,7 +58,7 @@ const ConfirmRide = () => {
             Notification("success", "Ride requested successfully!");
 
             // navigate back to dashboard
-            navigate("/student-dashboard")
+            navigate("/student")
 
         } catch (err) {
             Notification("failed", err.message)
