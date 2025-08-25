@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 
                 const userId = decodedToken.id; // Access id of the user
                 setIsAuthenticated(true); // Authenticate user
-                setUser({ name: "Samson James" }); // dummy user data
+                setUser({ name: "Samson James", userId: userId }); // dummy user data
                 setToken(token) // set token
 
                 // Make request with the user id to fetch the data of the user...
