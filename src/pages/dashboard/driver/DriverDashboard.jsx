@@ -23,7 +23,7 @@ const DriverDashboard = () => {
                 <DriverSidebar activeTab="driver"/>
 
                 {/* main content area */}
-                <div className='w-[100%] sm:w-[80%] sm:ml-[30%] lg:ml-[20%] mt-[4.2rem]'>
+                <div className='w-[100%] sm:w-[80%] sm:ml-[30%] lg:ml-[20%] mt-[5rem] sm:mt-[4rem]'>
                     <div className='px-4 mt-1 mb-10 sm:mt-0 sm:mb-0 sm:pl-6 sm:pr-6 md:pr-16 sm:py-6 md:py-7'>
                         {/* Top Bar */}
                         <div className='flex items-center justify-between'>

@@ -18,6 +18,7 @@ const DashboardNavbar = () => {
     const [showOverlay, setShowOverlay] = useState(false);
     const [showSideBar, setShowSideBar] = useState(false);
     const [role, setRole] = useState("")
+    const [activeNavTab, setActiveNavTab] = useState("")
     const [status, setStatus] = useState(true)
 
     const { pathname } = useLocation()
@@ -50,6 +51,7 @@ const DashboardNavbar = () => {
         switch (route) {
             case "profile":
                 removeSidebar() /* closes the side bar */
+                setActiveNavTab("profile")
                 //
                 console.log("/profile")
                 break;
@@ -63,18 +65,21 @@ const DashboardNavbar = () => {
             /* Driver Dashboard routes */
             case "ride-requests":
                 removeSidebar() /* closes the side bar */
+                setActiveNavTab("ride-requests")
                 //
                 navigate("/driver")
                 break;
 
             case "current-ride":
                 removeSidebar() /* closes the side bar */
+                setActiveNavTab("current-ride")
                 //
                 navigate("/driver/current-ride")
                 break;
 
             case "activity":
                 removeSidebar() /* closes the side bar */
+                setActiveNavTab("activity")
                 //
                 navigate("/driver/activity")
                 break;
@@ -94,7 +99,7 @@ const DashboardNavbar = () => {
 
     return (
         <>
-            <nav className={`bg-[--primary] ${role === "STUDENT" ? 'py-4' : 'py-[.6rem]'} fixed top-0 left-0 w-full z-[100]`} >
+            <nav className={`bg-[--primary] ${role === "STUDENT" ? 'py-4' : 'py-[1rem] sm:py-[.6rem]'} fixed top-0 left-0 w-full z-[100]`} >
                 <div className="container">
                     <div className="flex items-center justify-between">
 
@@ -141,8 +146,6 @@ const DashboardNavbar = () => {
                                                     </Link>
                                                 </>
                                         }
-
-
                                     </ul>
                                 </div>
                             </>
@@ -203,7 +206,7 @@ const DashboardNavbar = () => {
                         <div className={` mobile-nav-links bg-[#f3f4f6]  w-[80%] h-full shadow-[1px_3px_5px_rgba(0,0,0,0.10)] ${showSideBar ? 'open' : ''}`}>
                             {role === "STUDENT" ?
                                 <>
-                                    <ul className='flex flex-col gap-10 px-6 py-8 mt-8 text-[#787878]'>
+                                    <ul className='flex flex-col gap-6 px-6 py-8 mt-8 text-[#787878]'>
                                         {/* Nav Links */}
 
                                         <button onClick={() => handleSidebarBtn("profile")}>
@@ -219,15 +222,15 @@ const DashboardNavbar = () => {
                                 </>
                                 :
                                 <>
-                                    <ul className='flex flex-col gap-10 px-6 py-8 mt-8 text-[#787878]'>
+                                    <ul className='flex flex-col gap-6 px-6 py-8 mt-8'>
                                         {/* Nav Links */}
-                                        <button onClick={() => handleSidebarBtn("ride-requests")}>
+                                        <button className={`${activeNavTab === "ride-requests" ? "text-black" : "text-[#787878]"}`} onClick={() => handleSidebarBtn("ride-requests")}>
                                             <li className='flex figcaption'>Ride Requests</li>
                                         </button>
-                                        <button onClick={() => handleSidebarBtn("current-ride")}>
+                                        <button className={`${activeNavTab === "current-ride" ? "text-black" : "text-[#787878]"}`} onClick={() => handleSidebarBtn("current-ride")}>
                                             <li className='flex figcaption'>Current Ride</li>
                                         </button>
-                                        <button onClick={() => handleSidebarBtn("activity")}>
+                                        <button className={`${activeNavTab === "activity" ? "text-black" : "text-[#787878]"}`} onClick={() => handleSidebarBtn("activity")}>
                                             <li className='flex figcaption'>Activity</li>
                                         </button>
 
