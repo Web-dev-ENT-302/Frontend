@@ -91,9 +91,7 @@ const StudentDashboard = () => {
                     <div className="mt-14">
                         <h4 className="font-medium text-[.9rem] sm:text-[1rem]">My Rides </h4>
                         <div className="grid grid-cols-1 gap-4 mt-4">
-                            <Link to="/student/ride">
-                                <RecentRides location="3 in 1 LT" price="700.00" distance="2.7km" estimatedTime="12 mins" status="pending" />
-                            </Link>
+                            <RecentRides location="3 in 1 LT" price="700.00" distance="2.7km" estimatedTime="12 mins" status="pending" />
                             <RecentRides location="SOC" price="500.00" distance="1.7km" estimatedTime="4 mins" status="completed" />
                             <RecentRides location="SOC" price="500.00" distance="1.7km" estimatedTime="4 mins" status="accepted" />
                             <RecentRides location="SEET" price="500.00" distance="1.7km" estimatedTime="4 mins" status="rejected" />
@@ -104,7 +102,7 @@ const StudentDashboard = () => {
                     </div>
                 </section>
             </div>
-            F
+
         </>
     )
 }
