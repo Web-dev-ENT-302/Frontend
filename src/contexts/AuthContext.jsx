@@ -2,6 +2,7 @@ import { createContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 import Cookies from 'js-cookie';
+import LogoutConfirmationModal from '../components/LogoutConfirmationModal';
 
 export const AuthContext = createContext();
 
@@ -14,13 +15,17 @@ export const AuthProvider = ({ children }) => {
     });
 
     const [user, setUser] = useState(null);
-    const [token, setToken] = useState(null)
+    const [token, setToken] = useState(null);
+    const [showLogoutModal, setShowLogoutModal] = useState(false);
 
     const navigate = useNavigate();
 
     // Post Login successful handler
     const handleLogin = (data) => {
         Cookies.set('token', data.token, { expires: 1 }); // Token is set to expire in  1 day
+
+        // Store user data in sessionStorage
+        sessionStorage.setItem('userData', JSON.stringify(data.user));
 
         const decodedToken = jwtDecode(data.token); // decode token to extract (id, role, exp)
         setIsAuthenticated(true); // authenticate user
@@ -36,12 +41,25 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    // display the confirmation modal
     const handleLogout = () => {
+        setShowLogoutModal(true);
+    };
+
+    // log user out
+    const confirmLogout = () => {
         Cookies.remove('token');
+        sessionStorage.removeItem('userData');
         setIsAuthenticated(false);
         setUser(null);
         setToken(null);
+        setShowLogoutModal(false);
         navigate('/login');
+    };
+
+    // remove the confirmation modal
+    const cancelLogout = () => {
+        setShowLogoutModal(false);
     };
 
     // verify token and fetch user data
@@ -55,22 +73,27 @@ export const AuthProvider = ({ children }) => {
                 // Check if token is expired
                 const currentTime = Date.now() / 1000;
                 if (decodedToken.exp < currentTime) {
-                    // Token expired, logout
-                    handleLogout();
+                    // Token expired, logout immediately without confirmation
+                    confirmLogout();
                     return;
                 }
 
                 const userId = decodedToken.id; // Access id of the user
                 setIsAuthenticated(true); // Authenticate user
-                setUser({ name: "Samson James", userId: userId }); // dummy user data
                 setToken(token) // set token
 
+                // Try to get user data from sessionStorage first
+                const storedUserData = sessionStorage.getItem('userData');
+                if (storedUserData) {
+                    // Parse and use stored user data
+                    const userData = JSON.parse(storedUserData);
+                    setUser(userData);
+                }
                 // Make request with the user id to fetch the data of the user...
-
             } catch (error) {
-                // if token is not valid, log user out.
+                // if token is not valid, log user out immediately without confirmation
                 console.error("Invalid token:", error);
-                handleLogout();
+                confirmLogout();
             }
         } else {
             // No token found, ensure user is logged out
@@ -90,6 +113,13 @@ export const AuthProvider = ({ children }) => {
     return (
         <AuthContext.Provider value={value}>
             {children}
+
+            {/* log out modal popup */}
+            <LogoutConfirmationModal
+                open={showLogoutModal}
+                onClose={cancelLogout}
+                onConfirm={confirmLogout}
+            />
         </AuthContext.Provider>
     );
 

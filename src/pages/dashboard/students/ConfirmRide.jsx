@@ -36,12 +36,12 @@ const ConfirmRide = () => {
                     'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({
-                    // studentId: "",
+                    // studentId: 1,
                     pickup: from,
                     destination: to,
-                    // distance: "",
-                    // duration: "",
-                    // price: "",
+                    // distance: "2",
+                    // duration: "2",
+                    // price: 700,
                     
                 }),
                 credentials: 'include'
@@ -159,7 +159,7 @@ const ConfirmRide = () => {
                                     <>
                                         <button className="bg-[--primary] w-full rounded-[.5rem] py-[.7rem] text-white text-[.7rem] sm:text-[.8rem] md:text-[.9rem] font-semibold shadow-[0px_0px_10px_rgba(212,113,0,.4)] hover:scale-[.99] transition-all ease-linear flex  items-center justify-center gap-2 disabled:cursor-not-allowed" disabled>
                                             <Spinner />
-                                            Requesting ride...
+                                            Confirming request...
                                         </button>
                                     </> :
                                     <>
