@@ -45,27 +45,30 @@ const RideRequestCards = ({ profileImage, name, time, price, pickup, dropoff, di
             {/* Ride distance, km, ETA */}
             <div className='flex justify-between mt-5'>
                 <div className='flex items-center gap-1 text-[#787878] '>
-                    <FaRoad className='text-[.8rem] sm:text-[1rem]'/>
+                    <FaRoad className='text-[.8rem] sm:text-[1rem]' />
                     <p className='text-[.75rem] sm:text-[.9rem]'>{distance}km</p>
                 </div>
                 <div className='flex items-center gap-1 text-[#787878] '>
-                    <LuClock4 className='text-[.8rem] sm:text-[1rem]'/>
+                    <LuClock4 className='text-[.8rem] sm:text-[1rem]' />
                     <p className='text-[.75rem] sm:text-[.9rem]'>~{ETA}</p>
                 </div>
                 <div className='flex items-center gap-1 text-[#12A704] '>
-                    <FaLocationArrow className='text-[.8rem] sm:text-[1rem]'/>
+                    <FaLocationArrow className='text-[.8rem] sm:text-[1rem]' />
                     <p className='text-[.75rem] sm:text-[.9rem]'>{distanceAway}km away</p>
                 </div>
             </div>
 
             {/* action btn */}
             <div className='flex gap-4 mt-5'>
-                <div className='bg-[#EAEAEA] rounded-md w-1/2 text-center py-2 sm:py-3' onClick={onReject}>
-                    <button className='text-[.8rem] sm:text-[.9rem]'>Reject</button>
-                </div>
-                <div className='bg-[--primary] text-white rounded-md w-1/2 text-center py-2 sm:py-3 ' onClick={onAccept}>
-                    <button className='text-[.8rem] sm:text-[.9rem]'>Accept</button>
-                </div>
+
+                <button className='text-[.8rem] sm:text-[.9rem] bg-[#EAEAEA] rounded-md w-1/2 text-center py-2 sm:py-3' onClick={onReject}>
+                    Reject
+                </button>
+
+                <button className='text-[.8rem] sm:text-[.9rem] bg-[--primary] text-white rounded-md w-1/2 text-center py-2 sm:py-3' onClick={onAccept}>
+                    Accept
+                </button>
+
             </div>
         </div>
     )

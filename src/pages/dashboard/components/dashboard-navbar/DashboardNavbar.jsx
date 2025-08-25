@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../../../contexts/AuthContext';
 
@@ -21,6 +21,7 @@ const DashboardNavbar = () => {
     const [status, setStatus] = useState(true)
 
     const { pathname } = useLocation()
+    const navigate = useNavigate()
 
 
     // Handler to open the side bar
@@ -50,13 +51,32 @@ const DashboardNavbar = () => {
             case "profile":
                 removeSidebar() /* closes the side bar */
                 //
-                console.log("profile")
+                console.log("/profile")
                 break;
 
             case "logout":
                 removeSidebar() /* closes the side bar */
                 //
                 logout()
+                break;
+
+            /* Driver Dashboard routes */
+            case "ride-requests":
+                removeSidebar() /* closes the side bar */
+                //
+                navigate("/driver")
+                break;
+
+            case "current-ride":
+                removeSidebar() /* closes the side bar */
+                //
+                navigate("/driver/current-ride")
+                break;
+
+            case "activity":
+                removeSidebar() /* closes the side bar */
+                //
+                navigate("/driver/activity")
                 break;
 
             default:
@@ -79,7 +99,7 @@ const DashboardNavbar = () => {
                     <div className="flex items-center justify-between">
 
                         {/* Logo */}
-                        <Link to="">
+                        <Link to={`${role === "STUDENT" ? "/student" : "/driver"}`}>
                             <div className="sm:w-[90%] w-[75%] ">
                                 <img src={logo} alt="logo" className='object-cover w-full' />
                             </div>
@@ -181,19 +201,45 @@ const DashboardNavbar = () => {
                     {/* when clicked, close the side bar */}
                     <div className={`mobile-nav-links-overlay sm:hidden fixed inset-0 z-[10] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-[2px] ${showOverlay ? 'active' : ''}`} onClick={closeSidebar}>
                         <div className={` mobile-nav-links bg-[#f3f4f6]  w-[80%] h-full shadow-[1px_3px_5px_rgba(0,0,0,0.10)] ${showSideBar ? 'open' : ''}`}>
-                            <ul className='flex flex-col gap-10 px-6 py-8 mt-16'>
-                                {/* Nav Links */}
+                            {role === "STUDENT" ?
+                                <>
+                                    <ul className='flex flex-col gap-10 px-6 py-8 mt-8 text-[#787878]'>
+                                        {/* Nav Links */}
 
-                                <button onClick={() => handleSidebarBtn("profile")}>
-                                    <li className='flex figcaption'>My Profile</li>
-                                </button>
+                                        <button onClick={() => handleSidebarBtn("profile")}>
+                                            <li className='flex figcaption'>My Profile</li>
+                                        </button>
 
-                                <button onClick={() => handleSidebarBtn("logout")}>
-                                    <li className='flex text-red-500 figcaption'>
-                                        Log out
-                                    </li>
-                                </button>
-                            </ul>
+                                        <button onClick={() => handleSidebarBtn("logout")}>
+                                            <li className='flex text-red-500 figcaption'>
+                                                Log out
+                                            </li>
+                                        </button>
+                                    </ul>
+                                </>
+                                :
+                                <>
+                                    <ul className='flex flex-col gap-10 px-6 py-8 mt-8 text-[#787878]'>
+                                        {/* Nav Links */}
+                                        <button onClick={() => handleSidebarBtn("ride-requests")}>
+                                            <li className='flex figcaption'>Ride Requests</li>
+                                        </button>
+                                        <button onClick={() => handleSidebarBtn("current-ride")}>
+                                            <li className='flex figcaption'>Current Ride</li>
+                                        </button>
+                                        <button onClick={() => handleSidebarBtn("activity")}>
+                                            <li className='flex figcaption'>Activity</li>
+                                        </button>
+
+                                        <button onClick={() => handleSidebarBtn("logout")}>
+                                            <li className='flex text-red-500 figcaption'>
+                                                Log out
+                                            </li>
+                                        </button>
+                                    </ul>
+                                </>
+                            }
+
                         </div>
                     </div>
                 </div >

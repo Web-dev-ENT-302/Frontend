@@ -6,11 +6,11 @@ import { RiEBike2Fill } from "react-icons/ri"
 import { TbCurrencyNaira } from "react-icons/tb"
 
 const RecentRides = ({ location, price, distance, estimatedTime, status }) => {
-    const viewRide = () => {
-        Notification("in-progress", "Dev is busy implementing this feature  :)")
-    }
+    // const viewRide = () => {
+    //     Notification("in-progress", "Dev is busy implementing this feature  :)")
+    // }
     return (
-        <div className="p-4 bg-white rounded-[10px] shadow-[0px_0px_10px_rgba(0,0,0,0.04)] flex gap-3 items-center cursor-pointer hover:shadow-[0px_0px_10px_rgba(0,0,0,0.1)]  transition-all ease-linear" onClick={() => viewRide()}>
+        <div className="p-4 bg-white rounded-[10px] shadow-[0px_0px_10px_rgba(0,0,0,0.04)] flex gap-3 items-center cursor-pointer hover:shadow-[0px_0px_10px_rgba(0,0,0,0.1)]  transition-all ease-linear">
             <div className="w-full">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -22,6 +22,9 @@ const RecentRides = ({ location, price, distance, estimatedTime, status }) => {
                     <div>
                         {status === "pending" &&
                             <span className={`bg-blue-100 text-blue-700 text-[.6rem] md:text-[.7rem] md:py-[.1rem] px-1 md:px-3 rounded-[5px] capitalize `}>{status}</span>
+                        }
+                        {status === "accepted" &&
+                            <span className={`bg-yellow-100 text-yellow-700 text-[.6rem] md:text-[.7rem] md:py-[.1rem] px-1 md:px-3 rounded-[5px] capitalize `}>{status}</span>
                         }
 
                         {status === "completed" &&
