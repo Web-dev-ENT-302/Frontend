@@ -158,7 +158,7 @@ const DashboardNavbar = () => {
                                             <div className='flex items-center gap-3'>
                                                 <div>
                                                     <h4 className='capitalize md:text-[1rem] font-medium sm:text-[.8rem]'>{user?.name}</h4>
-                                                    <p className='flex justify-end sm:text-[.7rem] md:text-sm'>KKN 234 XY</p>
+                                                    <p className='flex justify-end sm:text-[.7rem] md:text-sm'>{user?.plateNumber}</p>
                                                 </div>
                                                 <Link to="">
                                                     <div className='relative'>

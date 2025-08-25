@@ -14,9 +14,11 @@ import { FaFlag } from "react-icons/fa6";
 
 //
 import locationCoordinates from "../../../services/location";
+import Spinner from "../../../components/Spinner";
 
 const StudentDashboard = () => {
     const { user } = useContext(AuthContext) // user data
+    const [loading, setLoading] = useState(false);
     const [currentLocation, setLocation] = useState("");
     const [destination, setDestination] = useState("")
 
@@ -76,6 +78,9 @@ const StudentDashboard = () => {
             return
         }
 
+        // display the loading spinner
+        setLoading(true)
+
         // Find coordinates for selected locations
         const fromLocation = Object.values(locationCoordinates).find(loc => loc.location === currentLocation);
         const toLocation = Object.values(locationCoordinates).find(loc => loc.location === destination);
@@ -92,21 +97,29 @@ const StudentDashboard = () => {
                 const distance = calculateDistance(fromLat, fromLon, toLat, toLon);
                 const duration = calculateDuration(distance);
 
-                // redirect to confirm ride
-                navigate('/student/confirm-ride', {
-                    state: {
-                        studentId: user?.userId,
-                        from: currentLocation,
-                        to: destination,
-                        distance: distance.toFixed(2),
-                        duration: Math.round(duration),
-                    }
-                });
+                // stimulate a delay of 3 seconds
+                setTimeout(() => {
+                    // redirect to confirm ride
+                    navigate('/student/confirm-ride', {
+                        state: {
+                            studentId: user?.userId,
+                            from: currentLocation,
+                            to: destination,
+                            distance: distance.toFixed(2),
+                            duration: Math.round(duration),
+                        }
+                    });
+
+                    // 
+                    setLoading(false)
+                }, 3000)
             } else {
                 console.error("Error converting coordinates to decimal format");
+                setLoading(false)
             }
         } else {
             console.error("Could not find coordinates for selected locations");
+            setLoading(false)
         }
     }
 
@@ -152,7 +165,14 @@ const StudentDashboard = () => {
 
                     {/* request a ride btn */}
                     <div className="relative mt-8">
-                        <button form="requestRideForm" className="w-full bg-[--primary] py-[.7rem] sm:py-[.9rem] rounded-[10px] text-white shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear text-[.8rem] sm:text-sm">Request a Ride</button>
+                        {loading ?
+                            <button form="requestRideForm" className="w-full bg-[--primary] py-[.7rem] sm:py-[.9rem] rounded-[10px] text-white shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear text-[.8rem] sm:text-sm flex items-center justify-center gap-2" disabled>
+                                <Spinner />
+                                Requesting ride...
+                            </button>
+                            :
+                            <button form="requestRideForm" className="w-full bg-[--primary] py-[.7rem] sm:py-[.9rem] rounded-[10px] text-white shadow-[0px_0px_10px_rgba(212,113,0,.4)] font-medium hover:scale-[.99] transition-all ease-linear text-[.8rem] sm:text-sm">Request a Ride</button>
+                        }
                     </div>
 
 
