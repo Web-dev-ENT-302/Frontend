@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 
 // ICONS
 import { IoIosStar } from "react-icons/io";
@@ -7,7 +8,6 @@ import { IoCall } from "react-icons/io5";
 
 // Image import
 import defaultProfileImage from "../../../../assets/images/profileImages/defaultProfile.png"
-import { useEffect } from "react";
 
 const RideConfirmationModal = ({ open, onClose }) => {
 
@@ -98,7 +98,7 @@ const RideConfirmationModal = ({ open, onClose }) => {
 
                                     {/* Action Buttons */}
                                     <div className="flex gap-4 mt-6 md:mt-9">
-                                        <div className="w-full flex justify-center">
+                                        <div className="flex justify-center w-full">
                                             <button className="w-full border border-[#C2C2C2] rounded-[7px] md:rounded-[10px] py-[.5rem] md:py-[.7rem] text-[#929292] text-[.8rem] md:text-[.9rem]" onClick={onClose}>Cancel Ride</button>
                                         </div>
 

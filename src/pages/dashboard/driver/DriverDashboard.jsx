@@ -20,7 +20,7 @@ const DriverDashboard = () => {
         <div className='driver-dashboard-container'>
             <div className='flex gap-2'>
                 {/* side bar */}
-                <DriverSidebar />
+                <DriverSidebar activeTab="driver"/>
 
                 {/* main content area */}
                 <div className='w-[100%] sm:w-[80%] sm:ml-[30%] lg:ml-[20%] mt-[4.2rem]'>
@@ -35,7 +35,7 @@ const DriverDashboard = () => {
                         </div>
 
                         {/* Main section */}
-                        <div className='mt-4 sm:mt-6'>
+                        <div className='mt-4 sm:mt-4'>
                             {/* ride request card wrapper */}
                             <div className='grid grid-cols-1 gap-6 lg:grid-cols-2'>
                                 {/* ride request card */}
