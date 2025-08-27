@@ -2,6 +2,7 @@ import { FaCircle, FaLocationArrow, FaRoad } from 'react-icons/fa6'
 import { IoLocationSharp } from 'react-icons/io5'
 import { LuClock4 } from 'react-icons/lu'
 import { TbCurrencyNaira } from 'react-icons/tb'
+import Spinner from '../../../../components/Spinner'
 
 const RideRequestCards = ({ profileImage, name, time, price, pickup, dropoff, distance, ETA, distanceAway, onAccept, onReject }) => {
     return (
@@ -12,7 +13,7 @@ const RideRequestCards = ({ profileImage, name, time, price, pickup, dropoff, di
                         <img src={profileImage} alt="profileImg" className='object-cover w-full' />
                     </div>
                     <div>
-                        <h4 className='mb-1 leading-none sm:text-[.9rem] text-[.8rem]'>{name}</h4>
+                        <h4 className='mb-1 leading-none sm:text-[.9rem] text-[.8rem] capitalize'>{name}</h4>
                         <p className='text-[.7rem] sm:text-sm leading-none text-[#787878]'>{time}</p>
                     </div>
                 </div>
@@ -46,28 +47,26 @@ const RideRequestCards = ({ profileImage, name, time, price, pickup, dropoff, di
             <div className='flex justify-between mt-5'>
                 <div className='flex items-center gap-1 text-[#787878] '>
                     <FaRoad className='text-[.8rem] sm:text-[1rem]' />
-                    <p className='text-[.75rem] sm:text-[.9rem]'>{distance}km</p>
+                    <p className='text-[.75rem] sm:text-[.9rem]'>{distance} km</p>
                 </div>
                 <div className='flex items-center gap-1 text-[#787878] '>
                     <LuClock4 className='text-[.8rem] sm:text-[1rem]' />
-                    <p className='text-[.75rem] sm:text-[.9rem]'>~{ETA}</p>
+                    <p className='text-[.75rem] sm:text-[.9rem]'>{ETA}</p>
                 </div>
-                <div className='flex items-center gap-1 text-[#12A704] '>
+                {/* <div className='flex items-center gap-1 text-[#12A704] '>
                     <FaLocationArrow className='text-[.8rem] sm:text-[1rem]' />
                     <p className='text-[.75rem] sm:text-[.9rem]'>{distanceAway}km away</p>
-                </div>
+                </div> */}
             </div>
 
             {/* action btn */}
             <div className='flex gap-4 mt-5'>
-
-                <button className='text-[.8rem] sm:text-[.9rem] bg-[#EAEAEA] rounded-md w-1/2 text-center py-2 sm:py-3' onClick={onReject}>
-                    Reject
-                </button>
-
-                <button className='text-[.8rem] sm:text-[.9rem] bg-[--primary] text-white rounded-md w-1/2 text-center py-2 sm:py-3' onClick={onAccept}>
-                    Accept
-                </button>
+                  <button className='text-[.8rem] sm:text-[.9rem] bg-[#EAEAEA] rounded-md w-1/2 text-center py-2 sm:py-3' onClick={onReject}>
+                            Reject
+                  </button>
+                 <button className='text-[.8rem] sm:text-[.9rem] bg-[--primary] text-white rounded-md w-1/2 text-center py-2 sm:py-3' onClick={onAccept}>
+                        Accept
+                    </button>
 
             </div>
         </div>

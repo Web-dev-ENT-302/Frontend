@@ -12,16 +12,15 @@ import MainLayout from './components/MainLayout'
 import StudentDashboard from './pages/dashboard/students/StudentDashboard'
 import DashboardLayout from './pages/dashboard/components/layout/DashboardLayout'
 import ConfirmRide from './pages/dashboard/students/ConfirmRide'
+import DriverDashboard from './pages/dashboard/driver/DriverDashboard'
+import CurrentRide from './pages/dashboard/driver/CurrentRide'
+import Earnings from './pages/dashboard/driver/Earnings'
 
 /* hooks */
 import ScrollToTop from './hooks/useScrollToTop'
 
 /* styles */
 import './App.css'
-import DriverDashboard from './pages/dashboard/driver/DriverDashboard'
-import CurrentRide from './pages/dashboard/driver/CurrentRide'
-import Earnings from './pages/dashboard/driver/Earnings'
-import Rides from './pages/dashboard/students/Rides'
 
 function App() {
   return (
@@ -53,15 +52,7 @@ function App() {
                   <ConfirmRide />
                 </ProtectedRoute>} />
 
-            {/* confirm ride details */}
-            <Route path="/student/ride"
-              element={
-                <ProtectedRoute>
-                  <DashboardLayout>
-                    <Rides />
-                  </DashboardLayout>
-                </ProtectedRoute>} />
-
+      
 
             {/* Protected  Route(DRIVER)*/}
             <Route path='/driver' element={

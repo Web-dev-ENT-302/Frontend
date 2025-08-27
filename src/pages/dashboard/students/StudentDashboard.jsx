@@ -1,12 +1,13 @@
 
-import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 import { AuthContext } from "../../../contexts/AuthContext";
 
 // components
 import RecentRides from "../components/ui/RecentRides";
+import RideConfirmationModal from "../components/ui/RideConfirmationModal";
 
 // icons
 import { FaLocationDot } from "react-icons/fa6";
@@ -16,11 +17,17 @@ import { FaFlag } from "react-icons/fa6";
 import locationCoordinates from "../../../services/location";
 import Spinner from "../../../components/Spinner";
 
+
 const StudentDashboard = () => {
-    const { user } = useContext(AuthContext) // user data
+    const { user, token } = useContext(AuthContext) // user data and token
     const [loading, setLoading] = useState(false);
+    const [ridesLoading, setRidesLoading] = useState(false);
+    const [rides, setRides] = useState([]);
+    const [ridesError, setRidesError] = useState(null);
     const [currentLocation, setLocation] = useState("");
-    const [destination, setDestination] = useState("")
+    const [destination, setDestination] = useState("");
+    const [rideDetailsModal, setRideDetailsModal] = useState(false);
+    const [selectedRide, setSelectedRide] = useState(null);
 
     const navigate = useNavigate()
 
@@ -57,6 +64,44 @@ const StudentDashboard = () => {
         const minutes = hours * 60;
         return minutes;
     };
+
+
+    // Function to get all rides for the user
+    const getRides = async () => {
+        setRidesLoading(true);
+        setRidesError(null);
+
+        try {
+            const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/rides/history?page=1&limit=20`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                Notification("failed", data.error);
+                return;
+            }
+            // handle success response
+            setRides(data.rides);
+        } catch (err) {
+            Notification("failed", "Error fetching rides");
+            setRidesError("Error fetching rides");
+        } finally {
+            setRidesLoading(false);
+        }
+    };
+
+    // Fetch rides when component mounts or user changes
+    useEffect(() => {
+        if (user?.id && token) {
+            getRides();
+        }
+    }, [user?.id]);
 
 
     // handle request
@@ -105,14 +150,15 @@ const StudentDashboard = () => {
                             studentId: user?.userId,
                             from: currentLocation,
                             to: destination,
-                            distance: distance.toFixed(2),
+                            distance: parseFloat(distance.toFixed(2)),
                             duration: Math.round(duration),
+                            price: 1000.00, // currently set to a fixed price. 1k
                         }
                     });
 
                     // 
                     setLoading(false)
-                }, 3000)
+                }, 2000)
             } else {
                 console.error("Error converting coordinates to decimal format");
                 setLoading(false)
@@ -121,6 +167,82 @@ const StudentDashboard = () => {
             console.error("Could not find coordinates for selected locations");
             setLoading(false)
         }
+    }
+
+
+
+
+    // View ride details
+    const viewRideDetails = (rideId) => {
+        // Find the specific ride in the rides array that matches the rideId
+        const foundRide = rides.find(ride => ride.id === rideId);
+
+        if (foundRide) {
+            // Check if the ride has not been accepted
+            if (foundRide.driver === null) {
+                if (foundRide.status === "PENDING") {
+                    Notification("failed", "No driver has accepted this ride yet");
+                } else if (foundRide.status === "PENDING") {
+                    Notification("success", "This ride has been completed");
+                } else if (foundRide.status === "CANCELLED") {
+                    Notification("success", "This ride was Rejected");
+                }
+                else {
+                    return;
+                }
+                return;
+            }
+
+
+            // Set the selected ride data
+            setSelectedRide(foundRide);
+
+            // Display the modal
+            setRideDetailsModal(true);
+
+            // Return the ride data
+            return foundRide;
+        } else {
+            // Handle case where ride is not found
+            Notification("failed", `Ride with ID #${rideId} not found`);
+            return null;
+        }
+    }
+
+    // Cancel ride function to pass to modal
+    const cancelRide = async (rideId) => {
+        try {
+            const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/rides/${rideId}/cancel`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                },
+                credentials: 'include'
+            })
+
+            const data = await res.json();
+
+            if (!res.ok) {
+                Notification("failed", data.error)
+                return;
+            }
+
+            Notification("success", `Ride Cancelled`);
+
+            // Optionally refresh rides list
+            getRides();
+        } catch (err) {
+            Notification("failed", err.message)
+        } finally {
+            onClose();
+        }
+    }
+
+    // close the modal
+    const onClose = () => {
+        setRideDetailsModal(false);
+        setSelectedRide(null); // Clear selected ride when closing modal
     }
 
 
@@ -178,20 +300,68 @@ const StudentDashboard = () => {
 
                     {/* rides */}
                     <div className="mt-14">
-                        <h4 className="font-medium text-[.9rem] sm:text-[1rem]">My Rides </h4>
+                        <div className="flex items-center justify-between mb-4">
+                            <h4 className="font-medium text-[.9rem] sm:text-[1rem]">My Rides</h4>
+                            <button
+                                onClick={getRides}
+                                className="text-[--primary] text-[.8rem] hover:underline"
+                                disabled={ridesLoading}
+                            >
+                                {ridesLoading ? "Loading..." : "Refresh"}
+                            </button>
+                        </div>
+
                         <div className="grid grid-cols-1 gap-4 mt-4">
-                            <RecentRides location="3 in 1 LT" price="700.00" distance="2.7km" estimatedTime="12 mins" status="pending" />
-                            <RecentRides location="SOC" price="500.00" distance="1.7km" estimatedTime="4 mins" status="completed" />
-                            <RecentRides location="SOC" price="500.00" distance="1.7km" estimatedTime="4 mins" status="accepted" />
-                            <RecentRides location="SEET" price="500.00" distance="1.7km" estimatedTime="4 mins" status="rejected" />
-                            <RecentRides location="SEET" price="500.00" distance="1.7km" estimatedTime="4 mins" status="completed" />
-                            <RecentRides location="SEET" price="500.00" distance="1.7km" estimatedTime="4 mins" status="completed" />
-                            <RecentRides location="SEET" price="500.00" distance="1.7km" estimatedTime="4 mins" status="rejected" />
+                            {ridesLoading ? (
+                                // Loading state
+                                <div className="flex items-center justify-center py-8">
+                                    <Spinner />
+                                    <span className="ml-2 text-[#787878]">Loading your rides...</span>
+                                </div>
+                            ) : ridesError && rides.length === 0 ? (
+                                // Error state
+                                <div className="py-8 text-center">
+                                    <p className="text-red-500 text-[.9rem]">Failed to load rides</p>
+                                    <button
+                                        onClick={getRides}
+                                        className="text-[--primary] text-[.8rem] hover:underline mt-2"
+                                    >
+                                        Try Again
+                                    </button>
+                                </div>
+                            ) : rides.length === 0 ? (
+                                // Empty state
+                                <div className="py-8 text-center">
+                                    <p className="text-[#787878] text-[.9rem]">No rides found</p>
+                                    <p className="text-[#787878] text-[.8rem] mt-1">Your ride history will appear here</p>
+                                </div>
+                            ) : (
+                                // Display rides
+                                rides.map((ride) => (
+                                    <RecentRides
+                                        key={ride.id}
+                                        id={ride.id}
+                                        location={ride.destination}
+                                        price={ride.priceNaira}
+                                        distance={`${ride.distanceKm} km` || "N/A"}
+                                        estimatedTime={`${ride.durationMins} mins` || "N/A"}
+                                        status={ride.status}
+                                        viewRideDetails={() => viewRideDetails(ride.id)}
+                                    />
+                                ))
+                            )}
                         </div>
                     </div>
                 </section>
             </div>
 
+            {/* Check ride  */}
+            <RideConfirmationModal
+                open={rideDetailsModal}
+                onClose={onClose}
+                rideData={selectedRide}
+                cancelRide={cancelRide}
+            />
         </>
     )
 }

@@ -21,7 +21,7 @@ const ConfirmRide = () => {
 
     const navigate = useNavigate()
     const location = useLocation();
-    const { studentId, from, to, distance, duration } = location.state || {}
+    const { studentId, from, to, distance, duration, price } = location.state || {}
 
 
     /* Stimulated Confirm Ride Request */
@@ -36,13 +36,11 @@ const ConfirmRide = () => {
                     'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify({
-                    // studentId: 1,
                     pickup: from,
                     destination: to,
-                    // distance: "2",
-                    // duration: "2",
-                    // price: 700,
-                    
+                    distanceKm: distance,
+                    durationMins: duration,
+                    priceNaira: price,
                 }),
                 credentials: 'include'
             })
@@ -148,7 +146,7 @@ const ConfirmRide = () => {
                             <span className="text-[.8rem] text-[#787878]">Estimated Price</span>
                             <div className="flex items-center ">
                                 <TbCurrencyNaira className="text-[1.1rem] md:text-[1.2rem]" />
-                                <span className="font-bold text-[.8rem] sm:text-[1rem]">600.00</span>
+                                <span className="font-bold text-[.8rem] sm:text-[1rem]">{price}.00</span>
                             </div>
                         </div>
 

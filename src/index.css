@@ -101,23 +101,3 @@ body {
     margin: 0 auto;
   }
 }
-/* Larger screens (desktops) */
-@media (max-width: 990px) {
-}
-
-/* Medium screens (e.g., tablets) */
-@media (max-width: 767px) {
-}
-
-/* Small screens (e.g., phones) */
-@media (max-width: 576px) {
-}
-
-@media (max-width: 425px) {
-}
-
-@media (max-width: 375px) {
-}
-
-@media (max-width: 325px) {
-}

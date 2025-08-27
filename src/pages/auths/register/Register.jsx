@@ -6,7 +6,7 @@ import Spinner from "../../../components/Spinner";
 
 /* icons */
 import { FaUserGraduate } from "react-icons/fa6";
-import { FaIdCard } from "react-icons/fa";
+import { FaIdCard, FaPhoneAlt } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
@@ -24,6 +24,7 @@ const Register = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phoneNumber: "",
     password: "",
     confirmPassword: "",
     plateNumber: ""
@@ -38,6 +39,7 @@ const Register = () => {
     setFormData({
       name: "",
       email: "",
+      phoneNumber: "",
       password: "",
       confirmPassword: "",
       plateNumber: ""
@@ -71,6 +73,7 @@ const Register = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          phone: formData.phoneNumber,
           password: formData.password,
           role: tab.toUpperCase(),
           ...(tab === "driver" && { plateNumber: formData.plateNumber }),
@@ -166,6 +169,15 @@ const Register = () => {
                 <div className="relative mt-1">
                   <IoMail className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
                   <input type="email" id="email" name="email" autoComplete="on" value={formData.email} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your email" required />
+                </div>
+              </div>
+
+              {/* phone */}
+              <div className="mb-5">
+                <label htmlFor="phoneNumber" className="figcaption">Phone Number</label>
+                <div className="relative mt-1">
+                  <FaPhoneAlt className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
+                  <input type="tel" id="phoneNumber" name="phoneNumber" autoComplete="on" value={formData.phoneNumber} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your phone number" required />
                 </div>
               </div>
 
