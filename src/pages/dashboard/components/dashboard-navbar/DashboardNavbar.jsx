@@ -118,7 +118,7 @@ const DashboardNavbar = () => {
                                         {/* Nav Links */}
                                         <Link to="">
                                             <li className='figcaption'>
-                                                <span className='px-4 py-[.4rem] text-black bg-white rounded-[2rem] shadow-md'>
+                                                <span className='px-4 py-[.4rem] text-black bg-white rounded-[2rem] shadow-md capitalize'>
                                                     {user?.name}
                                                 </span>
                                             </li>

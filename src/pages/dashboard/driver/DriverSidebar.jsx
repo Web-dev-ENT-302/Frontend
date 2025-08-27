@@ -2,14 +2,9 @@ import { Link } from "react-router-dom"
 import { RiEBike2Fill } from "react-icons/ri"
 import { TfiMenuAlt } from "react-icons/tfi"
 import { LuSquareActivity } from "react-icons/lu"
-import { MdOutlineHistory } from "react-icons/md"
 
 const DriverSidebar = ({activeTab}) => {
-    // const [activeTab, setActivetab] = useState("ride-request")
 
-    // const handleTabChange = (tab) => {
-    //     setActivetab(tab)
-    // }
     return (
         <div className="bg-white shadow-[1px_0px_3px_rgba(0,0,0,0.08)] fixed left-0 h-[100%] sm:w-[30%] lg:w-[20%] top-0 hidden sm:block z-20">
             <nav className="sm:mt-[3.7rem] lg:mt-[4.2rem]">

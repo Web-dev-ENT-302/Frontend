@@ -9,7 +9,7 @@ import { IoCall } from "react-icons/io5";
 // Image import
 import defaultProfileImage from "../../../../assets/images/profileImages/defaultProfile.png"
 
-const RideConfirmationModal = ({ open, onClose }) => {
+const RideConfirmationModal = ({ open, onClose, rideData, cancelRide }) => {
 
     useEffect(() => {
         if (open) {
@@ -44,8 +44,11 @@ const RideConfirmationModal = ({ open, onClose }) => {
 
                                     {/* Ride status */}
                                     <div className="flex items-center justify-between mt-4">
-                                        <h4 className="font-medium text-[.8rem] md:text-[1rem]">Your ride is on the way</h4>
-                                        <span className="bg-[#DBFFF3] text-[#04A76E] text-[.6rem] md:text-[.7rem] md:py-[.1rem] px-1 md:px-2 rounded-full">Arriving in 3 mins</span>
+                                        {/* <h4 className="font-medium text-[.8rem] md:text-[1rem]">Your ride is on the way</h4> */}
+                                        {rideData.status === "CANCELLED" && <h4 className="font-medium text-[.8rem] md:text-[1rem]">This ride was Cancelled</h4>}
+                                        {rideData.status === "ACCEPTED" && <h4 className="font-medium text-[.8rem] md:text-[1rem]">Your ride is on the way</h4>}
+                                        {rideData.status === "COMPLETED" && <h4 className="font-medium text-[.8rem] md:text-[1rem]">Ride Completed</h4>}
+                                        <span className="bg-[#DBFFF3] text-[#04A76E] text-[.6rem] md:text-[.7rem] md:py-[.1rem] px-1 md:px-2 rounded-full">Ride ID: #{rideData.id}</span>
                                     </div>
 
                                     {/* Driver Profile */}
@@ -58,7 +61,7 @@ const RideConfirmationModal = ({ open, onClose }) => {
 
                                             <div>
                                                 {/* driver's name */}
-                                                <h4 className="font-medium text-[.8rem] md:text-[.9rem]">Samson James</h4>
+                                                <h4 className="font-medium text-[.8rem] md:text-[.9rem]">{rideData.driver.name}</h4>
 
                                                 {/* star rating and total trips */}
                                                 <div className="flex items-center gap-1 md:gap-2">
@@ -83,12 +86,12 @@ const RideConfirmationModal = ({ open, onClose }) => {
 
                                                     <span><GoDotFill className="text-[#787878] text-[.6rem]" /></span>
 
-                                                    <span className="text-[#696969] text-[.7rem] md:text-[.8rem] font-semibold">KKN 234 XY</span>
+                                                    <span className="text-[#696969] text-[.7rem] md:text-[.8rem] font-semibold">{rideData.driver.plateNumber}</span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div>
-                                            <a href="tel:+234 1234567890">
+                                            <a href={`tel:${rideData.driver.phone}`}>
                                                 <div className="bg-[#FFF4E8] p-2 md:p-3 rounded-full">
                                                     <IoCall className="text-[#D47100] text-[1rem] md:text-[1.2rem]" />
                                                 </div>
@@ -99,10 +102,10 @@ const RideConfirmationModal = ({ open, onClose }) => {
                                     {/* Action Buttons */}
                                     <div className="flex gap-4 mt-6 md:mt-9">
                                         <div className="flex justify-center w-full">
-                                            <button className="w-full border border-[#C2C2C2] rounded-[7px] md:rounded-[10px] py-[.5rem] md:py-[.7rem] text-[#929292] text-[.8rem] md:text-[.9rem]" onClick={onClose}>Cancel Ride</button>
+                                            <button className="w-full border border-[#C2C2C2] rounded-[7px] md:rounded-[10px] py-[.5rem] md:py-[.7rem] text-[#929292] text-[.8rem] md:text-[.9rem]" onClick={() => cancelRide(rideData.id)}>
+                                                Cancel Ride
+                                            </button>
                                         </div>
-
-                                        
                                     </div>
                                 </div>
                             </div>
