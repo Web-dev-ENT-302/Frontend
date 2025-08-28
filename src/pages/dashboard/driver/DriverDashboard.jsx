@@ -192,7 +192,7 @@ const DriverDashboard = () => {
                                             distance={data.distanceKm || "N/A"}
                                             ETA={`${data.durationMins} mins`}
                                             onAccept={() => acceptRideRequest(data.id)}
-                                            onReject={() => rejectRideRequest(data.id)}
+                                            // onReject={() => rejectRideRequest(data.id)}
                                         />
                                     ))
                                 )}
