@@ -96,7 +96,7 @@ const locationCoordinates = {
     "coord": "7°17'52\"N 5°07'58\"E"
   },
   "coord17": {
-    "location": "North Gate",
+    "location": "Futa North Gate",
     "latitude": "7°18'22\"N",
     "longitude": "5°08'21\"E",
     "coord": "7°18'22\"N 5°08'21\"E"
@@ -108,7 +108,7 @@ const locationCoordinates = {
     "coord": "7°18'16\"N 5°08'03\"E"
   },
   "coord19": {
-    "location": "South gate",
+    "location": "Futa South gate",
     "latitude": "7°17'38\"N",
     "longitude": "5°08'59\"E",
     "coord": "7°17'38\"N 5°08'59\"E"
