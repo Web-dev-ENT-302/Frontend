@@ -61,10 +61,10 @@ const RideRequestCards = ({ profileImage, name, time, price, pickup, dropoff, di
 
             {/* action btn */}
             <div className='flex gap-4 mt-5'>
-                  <button className='text-[.8rem] sm:text-[.9rem] bg-[#EAEAEA] rounded-md w-1/2 text-center py-2 sm:py-3' onClick={onReject}>
+                  {/* <button className='text-[.8rem] sm:text-[.9rem] bg-[#EAEAEA] rounded-md w-1/2 text-center py-2 sm:py-3' onClick={onReject}>
                             Reject
-                  </button>
-                 <button className='text-[.8rem] sm:text-[.9rem] bg-[--primary] text-white rounded-md w-1/2 text-center py-2 sm:py-3' onClick={onAccept}>
+                  </button> */}
+                 <button className='text-[.8rem] sm:text-[.9rem] bg-[--primary] text-white rounded-md w-full text-center py-2 sm:py-3' onClick={onAccept}>
                         Accept
                     </button>
 

@@ -12,12 +12,14 @@ import { FaUserGraduate } from "react-icons/fa6";
 import { FaIdCard } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import { FaLock } from "react-icons/fa6";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 
 
 const Login = () => {
     const [tab, setTab] = useState("student");
     const [loading, setLoading] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [feedback, setFeedback] = useState({ Status: false, Type: "", Message: "", })
     const [formData, setFormData] = useState({
         email: "",
@@ -115,7 +117,7 @@ const Login = () => {
                         <button className={`w-[50%]  py-3 cursor-pointer border-b-2  ${tab === 'student' ? 'bg-[--primary-3] border-b-[--primary] text-[--primary]' : ''}`} onClick={() => handleTabChange("student")}>
                             <p className="flex items-center justify-center gap-2 figcaption ">
                                 <FaUserGraduate className="text-[1rem]" />
-                                Student
+                                Student/Staff
                             </p>
                         </button>
                         <button className={`w-[50%] py-3 cursor-pointer border-b-2  ${tab === 'driver' ? 'bg-[--primary-3] border-b-[--primary] text-[--primary]' : ''}`} onClick={() => handleTabChange("driver")}>
@@ -145,7 +147,23 @@ const Login = () => {
                                 <label htmlFor="password" className="figcaption">Password</label>
                                 <div className="relative mt-1">
                                     <FaLock className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                                    <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your password" required />
+                                    <input 
+                                        type={showPassword ? "text" : "password"} 
+                                        id="password" 
+                                        name="password" 
+                                        value={formData.password} 
+                                        onChange={handleChange} 
+                                        className="w-full text-[#929292] py-[.60rem] pl-9 pr-10 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" 
+                                        placeholder="Enter your password" 
+                                        required 
+                                    />
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowPassword(!showPassword)}
+                                        className="absolute top-[.8rem] right-3 text-[#929292] text-[.8rem] md:text-[.9rem] hover:text-[--primary] transition-colors"
+                                    >
+                                        {showPassword ? <FiEyeOff /> : <FiEye />}
+                                    </button>
                                 </div>
                             </div>
 

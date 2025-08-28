@@ -11,12 +11,15 @@ import { useEffect, useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 import { FaLock } from "react-icons/fa6";
+import { FiEye, FiEyeOff } from "react-icons/fi";
 
 
 
 const Register = () => {
   const [tab, setTab] = useState("student");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [feedback, setFeedback] = useState({ Status: false, Type: "", Message: "", });
 
   const navigate = useNavigate()
@@ -140,7 +143,7 @@ const Register = () => {
             <button className={`w-[50%]  py-3 cursor-pointer border-b-2  ${tab === 'student' ? 'bg-[--primary-3] border-b-[--primary] text-[--primary]' : ''}`} onClick={() => handleTabChange("student")}>
               <p className="flex items-center justify-center gap-2 figcaption ">
                 <FaUserGraduate className="text-[1rem]" />
-                Student
+                Student/Staff
               </p>
             </button>
             <button className={`w-[50%] py-3 cursor-pointer border-b-2  ${tab === 'driver' ? 'bg-[--primary-3] border-b-[--primary] text-[--primary]' : ''}`} onClick={() => handleTabChange("driver")}>
@@ -177,7 +180,7 @@ const Register = () => {
                 <label htmlFor="phoneNumber" className="figcaption">Phone Number</label>
                 <div className="relative mt-1">
                   <FaPhoneAlt className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                  <input type="tel" id="phoneNumber" name="phoneNumber" autoComplete="on" value={formData.phoneNumber} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Enter your phone number" required />
+                  <input type="tel" id="phoneNumber" name="phoneNumber" autoComplete="on" value={formData.phoneNumber} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="+2348123456790" required />
                 </div>
               </div>
 
@@ -187,7 +190,23 @@ const Register = () => {
                 <label htmlFor="password" className="figcaption">Password</label>
                 <div className="relative mt-1">
                   <FaLock className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                  <input type="password" id="password" name="password" value={formData.password} onChange={handleChange} className="w-full text-[#929292] py-[.60rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Create a password" required />
+                  <input 
+                    type={showPassword ? "text" : "password"} 
+                    id="password" 
+                    name="password" 
+                    value={formData.password} 
+                    onChange={handleChange} 
+                    className="w-full text-[#929292] py-[.60rem] pl-9 pr-10 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" 
+                    placeholder="Create a password" 
+                    required 
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute top-[.8rem] right-3 text-[#929292] text-[.8rem] md:text-[.9rem] hover:text-[--primary] transition-colors"
+                  >
+                    {showPassword ? <FiEyeOff /> : <FiEye />}
+                  </button>
                 </div>
               </div>
 
@@ -197,7 +216,23 @@ const Register = () => {
                 <label htmlFor="confirmPassword" className="figcaption">Confirm Password</label>
                 <div className="relative mt-1">
                   <FaLock className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                  <input type="password" id="confirmPassword" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} className="w-full text-[#929292] py-[.6rem] pl-9 pr-6 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" placeholder="Confirm your password" required />
+                  <input 
+                    type={showConfirmPassword ? "text" : "password"} 
+                    id="confirmPassword" 
+                    name="confirmPassword" 
+                    value={formData.confirmPassword} 
+                    onChange={handleChange} 
+                    className="w-full text-[#929292] py-[.6rem] pl-9 pr-10 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" 
+                    placeholder="Confirm your password" 
+                    required 
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute top-[.8rem] right-3 text-[#929292] text-[.8rem] md:text-[.9rem] hover:text-[--primary] transition-colors"
+                  >
+                    {showConfirmPassword ? <FiEyeOff /> : <FiEye />}
+                  </button>
                 </div>
               </div>
 
