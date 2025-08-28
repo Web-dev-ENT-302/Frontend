@@ -147,15 +147,15 @@ const Login = () => {
                                 <label htmlFor="password" className="figcaption">Password</label>
                                 <div className="relative mt-1">
                                     <FaLock className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                                    <input 
-                                        type={showPassword ? "text" : "password"} 
-                                        id="password" 
-                                        name="password" 
-                                        value={formData.password} 
-                                        onChange={handleChange} 
-                                        className="w-full text-[#929292] py-[.60rem] pl-9 pr-10 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" 
-                                        placeholder="Enter your password" 
-                                        required 
+                                    <input
+                                        type={showPassword ? "text" : "password"}
+                                        id="password"
+                                        name="password"
+                                        value={formData.password}
+                                        onChange={handleChange}
+                                        className="w-full text-[#929292] py-[.60rem] pl-9 pr-10 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none"
+                                        placeholder="Enter your password"
+                                        required
                                     />
                                     <button
                                         type="button"
