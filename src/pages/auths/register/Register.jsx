@@ -190,15 +190,15 @@ const Register = () => {
                 <label htmlFor="password" className="figcaption">Password</label>
                 <div className="relative mt-1">
                   <FaLock className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                  <input 
-                    type={showPassword ? "text" : "password"} 
-                    id="password" 
-                    name="password" 
-                    value={formData.password} 
-                    onChange={handleChange} 
-                    className="w-full text-[#929292] py-[.60rem] pl-9 pr-10 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" 
-                    placeholder="Create a password" 
-                    required 
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    className="w-full text-[#929292] py-[.60rem] pl-9 pr-10 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none"
+                    placeholder="Create a password"
+                    required
                   />
                   <button
                     type="button"
@@ -216,15 +216,15 @@ const Register = () => {
                 <label htmlFor="confirmPassword" className="figcaption">Confirm Password</label>
                 <div className="relative mt-1">
                   <FaLock className="top-[.8rem] left-3 absolute text-[#929292] text-[.8rem] md:text-[.9rem]" />
-                  <input 
-                    type={showConfirmPassword ? "text" : "password"} 
-                    id="confirmPassword" 
-                    name="confirmPassword" 
-                    value={formData.confirmPassword} 
-                    onChange={handleChange} 
-                    className="w-full text-[#929292] py-[.6rem] pl-9 pr-10 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none" 
-                    placeholder="Confirm your password" 
-                    required 
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    className="w-full text-[#929292] py-[.6rem] pl-9 pr-10 text-[.8rem] md:text-[.9rem]  rounded-[.5rem] border-[1.5px] border-[#00000030] outline-none"
+                    placeholder="Confirm your password"
+                    required
                   />
                   <button
                     type="button"
